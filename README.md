@@ -4,9 +4,9 @@ Provides an interface for writing server-agnostic (serverless) functions.
 
 # Introduction
 
-Lets start by making the following statement: the name "serverless functions" a misnomer - there's always a server involved. The intention was (most likely) intended to demonstrate that the developer was shielded from the operational efforts and concerns of having to host and maintain a server.
+The name "serverless functions" is a misnomer - there's always a server involved. The name was intended to demonstrate that the developer was shielded from the operational efforts and concerns of having to host and maintain a server.
 
-Being agnostic of the server implementation, is the ultimate goal!
+Being agnostic of the server implementation is the ultimate goal!
 
 **Vendor Lock In**
 
@@ -14,31 +14,31 @@ Ok... thats great... however every service provider that I've come across, still
 
 It's an unspoken fact: "Vendors love vendor lock in"
 
-Good luck to your future self, when you have to migrate your mature ecosystem to a different provider because of pricing/system limitations/library incompatibilities/etc  (*without comprehensive integration tests in place*).
+Good luck to your future self when you have to migrate your ecosystem to a different provider because of pricing/system limitations/library incompatibilities/etc  (** *without comprehensive integration tests in place*).
 
 **Routing**
 
-Some providers do not support hosting multiple functions. Some require you to use their bespoke Router implementation. While others ask you to create YAML configurations. Bleagh!
+Some providers do **not** support hosting multiple functions. Some require you to use their bespoke Router implementation. While others ask you to create YAML configurations. Bleagh!
 
 **Testing**
 
-Bespoke method interfaces and provider quirks make it difficult to test locally, without bespoke service provider command line utils to replicate hosting services. Bleagh!
+Some providers require you to install their command line utilities, so you can test and develop locally. Bleagh!
 
 # Problem Outline
 
 ## Problem: 
 
-Every service provider has reinvented it's own Request/Response/Function/Return method interfaces - which is the opposite of being "provider agnostic". (Bad for reasons above.)
+Every service provider has reinvented it's own serverless function interfaces - which is the opposite of being "provider agnostic". (Bad for reasons above.)
 
 ## Our Solution:
 
 To insulate and simplify the development of functions - this library provides a generic `AgnosticRouter` class (and `HttpRequest`, `HttpResponse` interfaces), so that functions can be built using a standard (HTTP) interface, agnostic of the underlying runtime implementation.
 
-Adding another "standard" to the mix without providing integrations would be redundant. Thus, this library also aims to provide API Router wrappers for all function providers.
+Adding another "standard" to the mix without providing integrations would be redundant. So, we aim to provide API Router wrappers for all function providers.
 
 # Example Usage
 
-Here is a simple example, of creating an `AgnosticRouter`, and then hosting it on an Express server.
+Here is a simple example, of creating an `AgnosticRouter` (and hosting it with Express).
 
 ```javascript
 import { AgnosticRouter } from '<libraryNameTbd>/common/AgnosticRouter';
