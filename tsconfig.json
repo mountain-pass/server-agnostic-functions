@@ -4,7 +4,7 @@
     "module": "esnext",
     "lib": ["esnext"],
     // "moduleResolution": "node",
-    "sourceMap": true,
+    // "sourceMap": true,
     // "declaration": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
