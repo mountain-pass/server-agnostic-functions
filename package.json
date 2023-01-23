@@ -33,7 +33,7 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "husky install",
+    "x_prepare": "husky install",
     "precommit": "echo husky disabled"
   },
   "devDependencies": {
