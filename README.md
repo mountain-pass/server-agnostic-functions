@@ -1,4 +1,4 @@
-# @mountainpass_oss/server-agnostic-functions
+# @mountainpass/server-agnostic-functions
 
 Provides an interface for writing server-agnostic (serverless) functions.
 
@@ -30,7 +30,7 @@ Every service provider has reinvented it's own serverless function interfaces - 
 
 ## Our Solution:
 
-This library provides a generic `AgnosticRouter` class (and `HttpRequest`, `HttpResponse` interfaces), so that functions can be built using a standard (HTTP) interface, and then wrapped in it's respective runtime `Wrapper`.
+This library provides an `AgnosticRouter` class (and `HttpRequest`, `HttpResponse` interfaces), so that functions can be built using a standard (HTTP) interface, and then wrapped in it's respective runtime `Wrapper`.
 
 # Example Usage
 
