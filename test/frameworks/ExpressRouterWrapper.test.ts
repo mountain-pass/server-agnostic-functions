@@ -3,10 +3,10 @@ import express, { Response, Router } from 'express';
 import { describe, it } from 'mocha';
 import request from 'supertest';
 import { AgnosticRouter } from '../../src/common/AgnosticRouter';
-import { wrap } from '../../src/providers/ExpressRouterWrapper';
+import { wrap } from '../../src/providers/ExpressWrapper';
 
 
-describe('ExpressRouterWrapper', () => {
+describe('ExpressWrapper', () => {
 
     describe('given the path "/users/{userId}"', () => {
 
@@ -33,7 +33,7 @@ describe('ExpressRouterWrapper', () => {
 
         // test the express router wrapper
         const app = express()
-        app.use(wrap(router))
+        app.use(wrap(express.Router(), router))
         // app.use(express.json()) // NOTE json parsing is disabled!
 
         it('should parse a GET Request successfully', async () => {
@@ -120,7 +120,7 @@ describe('ExpressRouterWrapper', () => {
 
         const app = express()
         app.use(express.json()) // NOTE json parsing is enabled!
-        app.use(wrap(router))
+        app.use(wrap(express.Router(), router))
 
         it('should parse a GET Request successfully', async () => {
             const response = await request(app)
