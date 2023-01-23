@@ -76,8 +76,7 @@ app.listen(4000, () => console.log('Listening on port 4000'))
 Supported provider wrappers:
 
 - [x] Express
-- [ ] Cloudflare Workers
-- [ ] AWS Serverless Functions
+- [x] Cloudflare Workers
 - [ ] *Your Provider?*
 
 ## Building your own Provider wrapper

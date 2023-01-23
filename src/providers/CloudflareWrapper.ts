@@ -15,13 +15,14 @@ export const wrap = <CloudflareEnvironment = any>(agnosticRouter: AgnosticRouter
     const url = new URL(req.url)
     request.method = req.method.toLowerCase() as HttpMethod
     request.path = url.pathname
-    request.headers = Object.fromEntries(Object.entries(req.headers).map(([k, v]) => [k.toLowerCase(), [v]]))
+    request.headers = Object.fromEntries(
+      Object.entries(Object.fromEntries(req.headers)).map(([k, v]) => [k.toLowerCase(), [v]])
+    )
     request.query = urlSearchParamsToKeyValueArrayMap(url.searchParams)
     request.body = await req.text()
     request.underlying = { req, ctx, env }
 
     // handle route
-    console.log('request', JSON.stringify(request, null, 2))
     const response = new HttpResponse()
     await agnosticRouter.handle(request, response)
 

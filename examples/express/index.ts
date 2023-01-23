@@ -6,4 +6,4 @@ import express from 'express'
 // wrap the router in an express app
 const app = express()
 app.use(wrap(express.Router(), MyAgnosticRoutes))
-app.listen(3000, () => console.log('listening on port 3000 - Start here -> http://localhost:3000/hello?name=bob'))
+app.listen(8787, () => console.log('listening on port 8787 - Start here -> http://localhost:8787/hello?name=bob'))
