@@ -38,6 +38,7 @@
     "l:install": "lerna exec npm install",
     "l:test": "lerna run test",
     "l:build": "lerna run build",
+    "l:bump": "lerna version patch --yes",
     "l:graph": "nx graph"
   },
   "devDependencies": {
