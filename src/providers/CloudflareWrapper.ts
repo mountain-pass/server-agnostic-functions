@@ -1,10 +1,8 @@
-import { ExecutionContext, Request } from '@cloudflare/workers-types'
+import { ExecutionContext, Request, Response } from '@cloudflare/workers-types'
 import { AgnosticRouter, HttpMethod } from '../common/AgnosticRouter'
 import { urlSearchParamsToKeyValueArrayMap } from '../common/HttpPathUtils'
 import HttpRequest from '../types/HttpRequest'
 import HttpResponse from '../types/HttpResponse'
-// import * as cloudflare from '@cloudflare/workers-types'
-// const { Response } = cloudflare
 
 type RequestParams = { req: Request; ctx: ExecutionContext; env: any }
 
