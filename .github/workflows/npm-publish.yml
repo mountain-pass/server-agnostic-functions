@@ -21,8 +21,7 @@ jobs:
           npm run l:bootstrap
           npm run l:test
           npm run l:build
+          echo //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN} > .npmrc
           npm run l:publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN_OSS}}
-
-          # echo //registry.npmjs.org/:_authToken=${NPM_TOKEN_OSS} > .npmrc
