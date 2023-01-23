@@ -33,6 +33,7 @@
     "packages/*"
   ],
   "scripts": {
+    "l:bootstrap": "lerna bootstrap",
     "l:install": "lerna exec npm install",
     "l:test": "lerna run test",
     "l:build": "lerna run build",
