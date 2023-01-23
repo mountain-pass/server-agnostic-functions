@@ -3,7 +3,8 @@
  * @param pathMatcher e.g. '/foo/{bar}/test'
  * @returns e.g. '/foo/(?<bar>[^/]+)/test'
  */
-export const convertToRegexMatcher = (pathMatcher: string) => new RegExp('^' + pathMatcher.replace(/\{(\w+)\}/g, (match, group) => `(?<${group}>[^/\?]+)`) + '(\\?|$)')
+export const convertToRegexMatcher = (pathMatcher: string) =>
+  new RegExp('^' + pathMatcher.replace(/\{(\w+)\}/g, (match, group) => `(?<${group}>[^/?]+)`) + '(\\?|$)')
 
 /**
  * Parses the path params from the actual path and the path matcher.
@@ -12,7 +13,8 @@ export const convertToRegexMatcher = (pathMatcher: string) => new RegExp('^' + p
  * @returns e.g. { bar: 'cat', foo: 'dog' }
  */
 export const parsePathParams = (actualPath: string, regexPathMatcher: RegExp) => {
-    const match = regexPathMatcher.exec(actualPath)
-    if (match === null) throw new Error(`Path '${actualPath}' does not match path matcher '${regexPathMatcher.toString()}'.`)
-    return match.groups
+  const match = regexPathMatcher.exec(actualPath)
+  if (match === null)
+    throw new Error(`Path '${actualPath}' does not match path matcher '${regexPathMatcher.toString()}'.`)
+  return match.groups
 }

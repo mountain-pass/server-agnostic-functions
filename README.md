@@ -1,5 +1,7 @@
 # server-agnostic-functions
 
+Provides an interface for writing server-agnostic (serverless) functions.
+
 # Introduction
 
 Lets start by making the following statement: the name "serverless functions" a misnomer - there's always a server involved. The intention was (most likely) intended to demonstrate that the developer was shielded from the operational efforts and concerns of having to host and maintain a server.

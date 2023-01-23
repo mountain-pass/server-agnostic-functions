@@ -1,24 +1,80 @@
 {
-  "name": "server-agnostic-functions",
+  "name": "@mountainpass/server-agnostic-functions",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "ts-mocha --timeout 3000 --bail --recursive './test/**/*.test.ts' './test/*.test.ts' --reporter-option maxDiffSize=8128",
-    "test:watch": "nodemon --watch test --watch src --exec 'npm test'"
+  "description": "Provides an interface for writing server-agnostic (serverless) functions.",
+  "author": "Mountain Pass <info@mountain-pass.com.au>",
+  "contributors": [
+    "Nick Grealy <nickgrealy@gmail.com>",
+    "Nick Grealy <nick@mountain-pass.com.au>"
+  ],
+  "keywords": [
+    "serverless",
+    "functions",
+    "cloudflare",
+    "aws",
+    "azure",
+    "google",
+    "express",
+    "server-agnostic"
+  ],
+  "license": "Apache-2.0",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mountain-pass/server-agnostic-functions.git"
   },
-  "author": "",
-  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mountain-pass/server-agnostic-functions/issues"
+  },
+  "homepage": "https://mountain-pass.github.io/server-agnostic-functions/",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "source": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "test": "ts-mocha -p tsconfig.test.json --timeout 3000 --bail --recursive './test/**/*.test.ts' './test/*.test.ts' --reporter-option maxDiffSize=8128",
+    "test:watch": "nodemon --watch test --watch src --exec 'npm test'",
+    "build": "microbundle-crl --format modern,cjs",
+    "version-bump": "npm version patch && git push && git push --tags",
+    "publish": "npm publish --access public",
+    "lint": "eslint --ext .js,.ts src",
+    "lint:fix": "eslint --fix --ext .js,.ts src",
+    "prettier": "prettier --write 'src/**/*.{js,ts,json}|*.{js,ts,json}'",
+    "pretty-quick": "pretty-quick",
+    "prepare": "husky install",
+    "precommit": "yarn pretty-quick && yarn lint"
+  },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20221111.1",
     "@types/express": "4.17.15",
     "@types/supertest": "2.0.12",
+    "@typescript-eslint/eslint-plugin": "5.48.2",
+    "@typescript-eslint/parser": "5.36.1",
     "chai": "4.3.7",
+    "eslint": "7.11.0",
+    "eslint-config-prettier": "6.12.0",
+    "eslint-config-standard": "14.1.1",
+    "eslint-config-standard-react": "9.2.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-react": "7.21.4",
+    "eslint-plugin-standard": "4.0.1",
     "express": "4.18.2",
+    "husky": "8.0.3",
+    "microbundle-crl": "0.13.11",
     "mocha": "10.2.0",
     "nodemon": "2.0.20",
+    "prettier": "2.8.3",
+    "pretty-quick": "3.1.3",
     "supertest": "6.3.3",
     "ts-mocha": "10.0.0",
-    "typescript": "4.9.4"
+    "typescript": "4.8.4"
   }
 }
