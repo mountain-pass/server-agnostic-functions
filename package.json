@@ -38,7 +38,7 @@
     "l:test": "lerna run test",
     "l:build": "lerna run build",
     "l:bump": "lerna version patch --yes",
-    "l:publish": "lerna publish from-git",
+    "l:publish": "lerna publish from-git --yes",
     "l:graph": "nx graph"
   },
   "devDependencies": {
