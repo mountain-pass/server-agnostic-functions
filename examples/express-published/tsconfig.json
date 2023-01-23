@@ -3,6 +3,6 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "target": "es2015"
+    "target": "es2015",
   }
 }
