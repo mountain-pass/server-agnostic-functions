@@ -1,6 +1,6 @@
 import { convertToRegexMatcher, parsePathParams } from './HttpPathUtils'
-import HttpResponse from '../types/HttpResponse'
-import HttpRequest from '../types/HttpRequest'
+import { HttpResponse } from '../types/HttpResponse'
+import { HttpRequest } from '../types/HttpRequest'
 
 /**
  * Handler for a Http Request.

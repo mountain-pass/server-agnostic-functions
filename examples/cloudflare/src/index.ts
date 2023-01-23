@@ -1,5 +1,5 @@
 import MyAgnosticRoutes from 'common/src/MyAgnosticRoutes'
-import { wrap } from '@mountainpass_oss/server-agnostic-functions/src/providers/CloudflareWrapper'
+import { wrap } from '../../../packages/core/src/providers/CloudflareWrapper'
 
 // NOTE Response is not exported from @cloudflare/workers-types - only DECLARED. So it has to be supplied at runtime.
 export default {

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import express, { Response, Router } from 'express';
 import { describe, it } from 'mocha';
 import request from 'supertest';
-import { AgnosticRouter } from '../../src/common/AgnosticRouter';
+import { AgnosticRouter } from '@mountainpass/server-agnostic-functions-core';
 import { wrap } from '../../src/providers/ExpressWrapper';
 
 

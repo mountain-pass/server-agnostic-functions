@@ -4,15 +4,7 @@ import { KeyValueArrayMap, KeyValueMap, nonenumerable } from './HttpTypes'
 /**
  * Generic representation of a Http Request.
  */
-export default class HttpRequest<UnderlyingRequest = any> {
-  static from = (method: HttpMethod, path: string = '/', data: string = '') => {
-    const req = new HttpRequest()
-    req.method = method
-    req.path = path
-    req.body = data
-    return req
-  }
-
+export class HttpRequest<UnderlyingRequest = any> {
   /** Value is lower cased. */
   method: HttpMethod = 'get'
   path: string = '/'

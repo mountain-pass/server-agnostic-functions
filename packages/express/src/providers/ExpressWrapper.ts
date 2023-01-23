@@ -1,7 +1,5 @@
 import { Request, Response, Router } from 'express'
-import { AgnosticRouter, HttpMethod } from '../common/AgnosticRouter'
-import HttpRequest from '../types/HttpRequest'
-import HttpResponse from '../types/HttpResponse'
+import { AgnosticRouter, HttpMethod, HttpRequest, HttpResponse } from '@mountainpass/server-agnostic-functions-core'
 
 // create a router that can be used in express
 
@@ -35,15 +33,19 @@ export const wrap = (expressRouter: Router, agnosticRouter: AgnosticRouter): Rou
   // serve all requests to the parent router's handle method
   expressRouter.use(async (req: Request, res: Response) => {
     try {
-      // map incoming requests to an agnostic request
-      // const path = new URL(req.originalUrl, `http://${req.headers.host}`).pathname
-      const path = req.originalUrl
-      const request = HttpRequest.from(req.method.toLowerCase() as HttpMethod, path, req.body)
-      if (req.headers)
+      // map incoming requests
+      const request = new HttpRequest()
+      request.method = req.method.toLowerCase() as HttpMethod
+      request.path = req.originalUrl
+      request.body = req.body
+      // setup headers
+      if (req.headers) {
         Object.entries(req.headers).forEach(([key, value]) => {
           request.headers[key.toLowerCase()] = Array.isArray(value) ? (value as string[]) : [value as string]
         })
-      if (req.query)
+      }
+      // setup query parameters
+      if (req.query) {
         Object.entries(req.query).forEach(([key, value]) => {
           if (Array.isArray(value) && value.length > 0) {
             const first = value[0]
@@ -58,10 +60,13 @@ export const wrap = (expressRouter: Router, agnosticRouter: AgnosticRouter): Rou
             request.query[key] = [(value || '').toString()]
           }
         })
+      }
+      // setup body
       if (request.method === 'post' || request.method === 'put') {
         request.body = await bodyToText(req)
       }
       request.underlying = req
+      // setup http response
       const response = new HttpResponse()
       response.underlying = res
       // invoke the handler

@@ -4,7 +4,7 @@ import { KeyValueMap, nonenumerable } from './HttpTypes'
  * Generic representation of a Http Response.
  */
 
-export default class HttpResponse<UnderlyingResponse = any> {
+export class HttpResponse<UnderlyingResponse = any> {
   static from = (statusCode: number, object: string | object) => {
     const res = new HttpResponse()
     res.statusCode = statusCode
