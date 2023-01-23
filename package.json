@@ -26,7 +26,7 @@
   "bugs": {
     "url": "https://github.com/mountain-pass/server-agnostic-functions/issues"
   },
-  "homepage": "https://mountain-pass.github.io/server-agnostic-functions/",
+  "homepage": "https://github.com/mountain-pass/server-agnostic-functions#readme",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",

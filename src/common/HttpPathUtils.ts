@@ -1,3 +1,5 @@
+import { KeyValueArrayMap } from '../types/HttpTypes'
+
 /**
  * Converts a string to a regex named group (capturing) matcher.
  * @param pathMatcher e.g. '/foo/{bar}/test'
@@ -24,4 +26,21 @@ export const parsePathParams = (actualPath: string, regexPathMatcher: RegExp) =>
   if (match === null)
     throw new Error(`Path '${actualPath}' does not match path matcher '${regexPathMatcher.toString()}'.`)
   return match.groups
+}
+
+/**
+ * Converts URLSearchParams to a KeyValueArrayMap.
+ * @param entries
+ * @returns
+ */
+export const urlSearchParamsToKeyValueArrayMap = (entries: URLSearchParams) => {
+  const result: KeyValueArrayMap = {}
+  for (const [key, value] of entries) {
+    if (Array.isArray(result[key])) {
+      result[key].push(value)
+    } else {
+      result[key] = [value]
+    }
+  }
+  return result
 }
