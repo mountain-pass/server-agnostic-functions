@@ -33,6 +33,9 @@
   "files": [
     "dist"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=12"
   },
@@ -51,7 +54,7 @@
   },
   "dependencies": {
     "@cloudflare/workers-types": "4.20221111.1",
-    "@mountainpass/server-agnostic-functions-core": "../core"
+    "@mountainpass/server-agnostic-functions-core": "^1.0.20"
   },
   "devDependencies": {
     "@types/supertest": "2.0.12",
@@ -77,5 +80,6 @@
     "supertest": "6.3.3",
     "ts-mocha": "10.0.0",
     "typescript": "4.9.4"
-  }
+  },
+  "gitHead": "2f7c77b8553487765775857a7fdf5189eeae0bc9"
 }
