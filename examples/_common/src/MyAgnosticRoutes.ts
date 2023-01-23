@@ -1,4 +1,4 @@
-import { AgnosticRouter } from '../../../packages/core/src/common/AgnosticRouter'
+import { AgnosticRouter } from '@mountainpass/server-agnostic-functions-core'
 
 const router = new AgnosticRouter()
 

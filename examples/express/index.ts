@@ -1,6 +1,6 @@
 
 import MyAgnosticRoutes from 'common/src/MyAgnosticRoutes'
-import { wrap } from '../../packages/core/src/providers/ExpressWrapper'
+import { wrap } from '@mountainpass/server-agnostic-functions-express'
 import express from 'express'
 
 // wrap the router in an express app
