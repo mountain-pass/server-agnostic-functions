@@ -4,6 +4,6 @@ Provides an interface for writing server-agnostic (serverless) functions.
 
 # Packages
 
-- [Core](/packages/core/)
+- [Core](/packages/core/) *- (Start here)*
 - [Express](/packages/express/)
 - [Cloudflare](/packages/cloudflare/)
