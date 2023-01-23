@@ -84,6 +84,7 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
         req.params = { ...req.params, ...parsePathParams(req.path, regex) }
         return true
       }
+      return false
     })
     if (route) {
       await route.value(req, res)
