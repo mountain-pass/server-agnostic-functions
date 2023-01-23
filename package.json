@@ -31,5 +31,16 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "l:ci": "lerna exec npm ci",
+    "l:bootstrap": "lerna bootstrap",
+    "l:install": "lerna exec npm install",
+    "l:test": "lerna run test",
+    "l:build": "lerna run build",
+    "l:graph": "nx graph"
+  },
+  "devDependencies": {
+    "lerna": "^6.4.1"
+  }
 }
