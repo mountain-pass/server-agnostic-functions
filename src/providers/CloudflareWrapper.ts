@@ -1,4 +1,4 @@
-import { ExecutionContext, Request, Response } from '@cloudflare/workers-types'
+import { ExecutionContext, Request } from '@cloudflare/workers-types'
 import { AgnosticRouter, HttpMethod } from '../common/AgnosticRouter'
 import { urlSearchParamsToKeyValueArrayMap } from '../common/HttpPathUtils'
 import HttpRequest from '../types/HttpRequest'
@@ -6,7 +6,18 @@ import HttpResponse from '../types/HttpResponse'
 
 type RequestParams = { req: Request; ctx: ExecutionContext; env: any }
 
-export const wrap = <CloudflareEnvironment = any>(agnosticRouter: AgnosticRouter<RequestParams, undefined>) => {
+export type ResponseConstructor<Response = any> = (body: string, options: any) => Response
+
+/**
+ * NOTE Response is not exported from @cloudflare/workers-types - only DECLARED. So it has to be supplied at runtime. :|
+ * @param responseConstructor
+ * @param agnosticRouter
+ * @returns
+ */
+export const wrap = <CloudflareEnvironment = any>(
+  responseConstructor: ResponseConstructor,
+  agnosticRouter: AgnosticRouter<RequestParams, undefined>
+) => {
   return async (req: Request, ctx: ExecutionContext, env: CloudflareEnvironment): Promise<any> => {
     // map request
     const request = new HttpRequest()
@@ -25,7 +36,6 @@ export const wrap = <CloudflareEnvironment = any>(agnosticRouter: AgnosticRouter
     await agnosticRouter.handle(request, response)
 
     // map response
-    // NOTE Response is not exported from @cloudflare/workers-types - only DECLARED. It is supplied at runtime. :|
-    return new Response(response.data, { status: response.statusCode, headers: response.headers })
+    return responseConstructor(response.data, { status: response.statusCode, headers: response.headers })
   }
 }

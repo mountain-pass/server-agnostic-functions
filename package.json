@@ -48,7 +48,7 @@
     "prettier": "prettier --write 'src/**/*.{js,ts,json}|*.{js,ts,json}'",
     "pretty-quick": "pretty-quick",
     "prepare": "husky install",
-    "precommit": "yarn pretty-quick && yarn lint"
+    "precommit": "yarn pretty-quick && yarn lint && yarn build"
   },
   "dependencies": {
     "@cloudflare/workers-types": "4.20221111.1",

@@ -1,0 +1,17 @@
+{
+  "name": "@examples/express",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "ts-node index.ts"
+  },
+  "dependencies": {
+    "common": "../_common",
+    "@mountainpass_oss/server-agnostic-functions": "1.0.11",
+    "express": "4.18.2"
+  },
+  "devDependencies": {
+    "ts-node": "10.9.1"
+  }
+}
