@@ -2,11 +2,14 @@
   "name": "express",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index.js"
+    "start": "ts-node index.ts"
+  },
+  "dependencies": {
+    "@mountainpass_oss/server-agnostic-functions": "1.0.10",
+    "express": "4.18.2"
   },
   "devDependencies": {
-    "husky": "8.0.3",
-    "prettier": "2.8.3",
-    "pretty-quick": "3.1.3"
+    "ts-node": "10.9.1",
+    "typescript": "4.9.4"
   }
 }
