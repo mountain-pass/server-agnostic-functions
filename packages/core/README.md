@@ -1,4 +1,4 @@
-# @mountainpass/server-agnostic-functions
+# @mountainpass/server-agnostic-functions-core
 
 Provides an interface for writing server-agnostic (serverless) functions.
 
