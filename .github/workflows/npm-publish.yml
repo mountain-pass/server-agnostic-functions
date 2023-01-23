@@ -18,7 +18,8 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: |
           npm i
-          npm run l:ci
+          npm run l:bootstrap
+          npm run l:test
           npm run l:build
           npm run l:publish
         env:
