@@ -32,24 +32,15 @@ Every service provider has reinvented it's own serverless function interfaces - 
 
 ## Our Solution:
 
-To insulate and simplify the development of functions - this library provides a generic `AgnosticRouter` class (and `HttpRequest`, `HttpResponse` interfaces), so that functions can be built using a standard (HTTP) interface, agnostic of the underlying runtime implementation.
-
-Adding another "standard" to the mix without providing integrations would be redundant. So, we aim to provide API Router wrappers for all function providers.
+This library provides a generic `AgnosticRouter` class (and `HttpRequest`, `HttpResponse` interfaces), so that functions can be built using a standard (HTTP) interface, and then wrapped in it's respective runtime `Wrapper`.
 
 # Example Usage
 
-Here is a simple example, of creating an `AgnosticRouter` (and hosting it with Express).
+Here is an example of an `AgnosticRouter` implementation.
 
 ```javascript
-import { AgnosticRouter } from '<libraryNameTbd>/common/AgnosticRouter';
-import { wrap } from '<libraryNameTbd>/providers/ExpressWrapper';
-
-// (provider agnostic code starts here...)
-
-// create a router for your hosting framework of choice...
 const router = new AgnosticRouter()
 
-// create your request handlers...
 router.get('/users/{userId}', (req, res) => {
     res.json({message: 'success', user: req.params.userId })
 })
@@ -57,27 +48,28 @@ router.get('/services/getUsersByQueryId', (req, res) => {
     res.json({message: 'success', user: req.query.userId })
 })
 
-// (provider agnostic code ends here...)
-
-// then use the router in your server hosting framework
-const app = express()
-app.use(wrap(router))
-app.listen(4000, () => console.log('Listening on port 4000'))
+export router
 ```
 
-# Notes
+Then to host it, wrap it in your service provider's wrapper.
 
-- The `AgnosticRouter` can take Type arguments, for the underlying `Request` and `Response` types. These are then provided via the `underlying` property, on the `HttpRequest` and `HttpResponse` handler parameters.
+Below is an example using the `ExpressWrapper.wrap()`:
 
-- The `AgnosticRouter` does not (currently) support nesting child `AgnosticRouter`s.
+```
+const app = express()
+app.use(ExpressWrapper.wrap(express.Router(), router))
+app.listen(4000)
+```
+
+More provider examples are available below.
 
 # Provider wrappers & Building your own
 
-Supported provider wrappers:
+Supported provider wrappers and their example usages:
 
-- [x] Express
-- [x] Cloudflare Workers
-- [ ] *Your Provider?*
+- ✅ [`ExpressWrapper`](examples/cloudflare-published/src/index.ts)
+- ✅ [`CloudflareWrapper`](examples/express-published/index.ts)
+- ❓ *Your Provider?*
 
 ## Building your own Provider wrapper
 
@@ -94,3 +86,9 @@ The `STATEFUL_MODE` environment variable should be set to true, if a stateful ho
 ```
 process.env.STATEFUL_MODE = 'true'
 ```
+
+# Notes
+
+- The `AgnosticRouter` can take Type arguments, for the underlying `Request` and `Response` types. These are then provided via the `underlying` property, on the `HttpRequest` and `HttpResponse` handler parameters.
+
+- The `AgnosticRouter` does not (currently) support nesting child `AgnosticRouter`s.
