@@ -1,6 +1,6 @@
 {
   "name": "@mountainpass/server-agnostic-functions-cloudflare",
-  "version": "1.0.14",
+  "version": "1.0.16",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
   "contributors": [
