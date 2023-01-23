@@ -4,21 +4,19 @@ Provides an interface for writing server-agnostic (serverless) functions.
 
 # Introduction
 
-The name "serverless functions" is a misnomer - there's always a server involved. The name was intended to demonstrate that the developer was shielded from the operational efforts and concerns of having to host and maintain a server.
+The name "serverless functions" is a misnomer - there's always a server involved. The name intends to demonstrate that the developer is shielded from the operational concerns of having to host & maintain a server.
 
 Being agnostic of the server implementation is the ultimate goal!
 
+However...
+
 **Vendor Lock In**
 
-Ok... thats great... however every service provider that I've come across, still imposes their own method signatures and functional behaviours on the developer - which ultimately leads to vendor lock in. 
-
-It's an unspoken fact: "Vendors love vendor lock in"
-
-Good luck to your future self when you have to migrate your ecosystem to a different provider because of pricing/system limitations/library incompatibilities/etc  (** *without comprehensive integration tests in place*).
+Every service provider still imposes their own method signatures and functional behaviours on the developer. Not very agnostic!
 
 **Routing**
 
-Some providers do **not** support hosting multiple functions. Some require you to use their bespoke Router implementation. While others ask you to create YAML configurations. Bleagh!
+Some providers do **not** support hosting multiple functions. Some require you to use their bespoke Router implementation. While others ask you to create YAML configurations. Yuck!
 
 **Testing**
 
@@ -47,8 +45,6 @@ router.get('/users/{userId}', (req, res) => {
 router.get('/services/getUsersByQueryId', (req, res) => {
     res.json({message: 'success', user: req.query.userId })
 })
-
-export router
 ```
 
 Then to host it, wrap it in your service provider's wrapper.
@@ -67,8 +63,8 @@ More provider examples are available below.
 
 Supported provider wrappers and their example usages:
 
-- ✅ [`ExpressWrapper`](examples/cloudflare-published/src/index.ts)
-- ✅ [`CloudflareWrapper`](examples/express-published/index.ts)
+- ✅ [`ExpressWrapper`](examples/express-published/index.ts)
+- ✅ [`CloudflareWrapper`](examples/cloudflare-published/src/index.ts)
 - ❓ *Your Provider?*
 
 ## Building your own Provider wrapper
