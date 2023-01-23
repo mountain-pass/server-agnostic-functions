@@ -31,12 +31,5 @@
   },
   "workspaces": [
     "packages/*"
-  ],
-  "scripts": {
-    "x_prepare": "husky install",
-    "precommit": "echo husky disabled"
-  },
-  "devDependencies": {
-    "husky": "8.0.3"
-  }
+  ]
 }
