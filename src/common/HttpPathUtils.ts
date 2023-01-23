@@ -3,8 +3,15 @@
  * @param pathMatcher e.g. '/foo/{bar}/test'
  * @returns e.g. '/foo/(?<bar>[^/]+)/test'
  */
-export const convertToRegexMatcher = (pathMatcher: string) =>
-  new RegExp('^' + pathMatcher.replace(/\{(\w+)\}/g, (match, group) => `(?<${group}>[^/?]+)`) + '(\\?|$)')
+export const convertToRegexMatcher = (pathMatcher: string) => {
+  return new RegExp(
+    '^' +
+      pathMatcher.replace(/\{(\w+)\}/g, (match, group) => {
+        return match ? `(?<${group}>[^/?]+)` : ''
+      }) +
+      '(\\?|$)'
+  )
+}
 
 /**
  * Parses the path params from the actual path and the path matcher.
