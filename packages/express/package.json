@@ -1,6 +1,6 @@
 {
   "name": "@mountainpass/server-agnostic-functions-express",
-  "version": "1.0.24",
+  "version": "1.0.25",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
   "contributors": [
@@ -52,7 +52,7 @@
     "precommit": "yarn pretty-quick && yarn lint && yarn build"
   },
   "dependencies": {
-    "@mountainpass/server-agnostic-functions-core": "^1.0.24",
+    "@mountainpass/server-agnostic-functions-core": "^1.0.25",
     "@types/express": "4.17.15"
   },
   "devDependencies": {
