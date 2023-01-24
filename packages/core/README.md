@@ -80,7 +80,7 @@ The wrapper should be as lightweight and efficient as possible. Avoid adding unn
 
 The `STATEFUL_MODE` environment variable should be set to true, if a stateful hosting framework is being used. This allows functions to know whether they need to clean up shared resources.
 
-```
+```javascript
 process.env.STATEFUL_MODE = 'true'
 ```
 
