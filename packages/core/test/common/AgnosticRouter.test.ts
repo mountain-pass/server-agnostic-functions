@@ -1,17 +1,8 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { AgnosticRouter, HttpMethod } from '../../src/common/AgnosticRouter';
 import { HttpRequest } from '../../src/types/HttpRequest';
 import { HttpResponse } from '../../src/types/HttpResponse';
-import { router } from './fixtures/MySimpleApi'
-
-const newRequest = (method: string, path: string, body: string) => {
-    const req = new HttpRequest()
-    req.method = method.toLowerCase() as HttpMethod
-    req.path = path
-    req.body = body
-    return req
-}
+import { router } from './fixtures/MySimpleApi';
 
 describe('AgnosticRouter', () => {
 
