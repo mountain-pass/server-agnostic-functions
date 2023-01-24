@@ -21,7 +21,7 @@ export const wrap = <CloudflareEnvironment = any>(
   responseConstructor: CloudflareResponseConstructor,
   agnosticRouter: AgnosticRouter<CloudflareRequest<CloudflareEnvironment>, undefined>
 ) => {
-  return async (req: Request, ctx: ExecutionContext, env: CloudflareEnvironment): Promise<any> => {
+  return async (req: Request, env: CloudflareEnvironment, ctx: ExecutionContext): Promise<any> => {
     try {
       // map request
       const request = new HttpRequest()
