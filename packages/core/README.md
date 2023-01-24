@@ -93,3 +93,7 @@ process.env.STATEFUL_MODE = 'true'
 - The `AgnosticRouter` can take Type arguments, for the underlying `Request` and `Response` types. These are then provided via the `underlying` property, on the `HttpRequest` and `HttpResponse` handler parameters.
 
 - The `AgnosticRouter` does not (currently) support nesting child `AgnosticRouter`s.
+
+- Programatically creating the Routes, lends itself to automatic API documentation.
+
+- Would be good if we could access the environment variables via the Request context. e.g. req.env
