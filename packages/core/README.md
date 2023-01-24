@@ -70,7 +70,7 @@ Supported provider wrappers and their example usages:
 
 ## Building your own Provider wrapper
 
-Don't see your provider? Have a go at writing your own, it's actually very easy! Start with the [ExpressWrapper](src/providers/ExpressWrapper.ts) as an example.
+Don't see your provider? Have a go at writing your own, it's actually very easy! Start with the [AwsWrapper](https://github.com/mountain-pass/server-agnostic-functions/tree/main/packages/aws/src/providers/AwsWrapper.ts) as an example.
 
 Once it's ready, please submit a PR back to the repo, so the entire community can benefit!
 
