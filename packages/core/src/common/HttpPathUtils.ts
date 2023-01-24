@@ -9,9 +9,11 @@ export const convertToRegexMatcher = (pathMatcher: string) => {
   let regexStr = pathMatcher.replace(/\{(\w+)\}/g, (match, group) => {
     return match ? `(?<${group}>[^/?]+)` : ''
   })
-  if (regexStr.endsWith('/*')) { // support '/*' match all wildcards
+  if (regexStr.endsWith('/*')) {
+    // support '/*' match all wildcards
     regexStr = `^${regexStr}.*(\\?|$)`
-  } else if (regexStr.endsWith('/')) { // support optional trailing slash
+  } else if (regexStr.endsWith('/')) {
+    // support optional trailing slash
     regexStr = `^${regexStr}?(\\?|$)`
   } else {
     regexStr = `^${regexStr}/?(\\?|$)` // add optional trailing slash
