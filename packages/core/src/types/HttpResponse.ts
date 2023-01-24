@@ -5,17 +5,16 @@ import { KeyValueMap, nonenumerable } from './HttpTypes'
  */
 
 export class HttpResponse<UnderlyingResponse = any> {
-  static from = (statusCode: number, object: string | object) => {
-    const res = new HttpResponse()
-    res.statusCode = statusCode
-    if (typeof object === 'string') {
-      res.body = object
-    } else if (typeof object === 'undefined') {
-      // do nothing
-    } else {
-      res.json(object)
-    }
-    return res
+
+  /**
+   * Allows building upon the default object.
+   * @param defaults 
+   * @returns 
+   */
+  static fromDefaults = (defaults: Partial<HttpResponse>) => {
+    const req = new HttpResponse()
+    Object.assign(req, defaults)
+    return req
   }
 
   // three fields only

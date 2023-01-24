@@ -32,6 +32,10 @@ Every service provider has reinvented it's own serverless function interfaces - 
 
 This library provides an `AgnosticRouter` class (and `HttpRequest`, `HttpResponse` interfaces), so that functions can be built using a standard (HTTP) interface, and then wrapped in it's respective runtime `Wrapper`.
 
+Due to the simplified interface and the inbuilt Routing layer, we can now reliably unit test our Router in isolation (free from servers), with the confidence that the hosted service will behave consistently at runtime.
+
+Check out the [AgnosticRouter.test.ts](https://github.com/mountain-pass/server-agnostic-functions/blob/main/packages/core/test/common/AgnosticRouter.test.ts) unit test for an example.
+
 # Example Usage
 
 Here is an example of an `AgnosticRouter` implementation.
