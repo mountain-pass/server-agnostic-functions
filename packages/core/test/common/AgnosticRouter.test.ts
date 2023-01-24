@@ -19,9 +19,7 @@ describe('AgnosticRouter', () => {
         const router = new AgnosticRouter()
 
         // one route only
-        router.get('/users/{userId}', (req, res) => {
-            res.json({ message: 'hi', ...req.params })
-        })
+        router.get('/users/{userId}', (req, res) => res.json({ message: 'hi', ...req.params }))
 
         it('should handle valid requests', async () => {
             const req = newRequest('get', '/users/123', '{}')
