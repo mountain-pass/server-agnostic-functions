@@ -5,11 +5,10 @@ import { KeyValueMap, nonenumerable } from './HttpTypes'
  */
 
 export class HttpResponse<UnderlyingResponse = any> {
-
   /**
    * Allows building upon the default object.
-   * @param defaults 
-   * @returns 
+   * @param defaults
+   * @returns
    */
   static fromDefaults = (defaults: Partial<HttpResponse>) => {
     const req = new HttpResponse()
