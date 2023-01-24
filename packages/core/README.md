@@ -63,8 +63,9 @@ More provider examples are available below.
 
 Supported provider wrappers and their example usages:
 
-- ✅ [`ExpressWrapper`](https://github.com/mountain-pass/server-agnostic-functions/tree/main/examples/express/index.ts)
+- ✅ [`AwsWrapper`](https://github.com/mountain-pass/server-agnostic-functions/tree/main/examples/aws/src/index.mjs)
 - ✅ [`CloudflareWrapper`](https://github.com/mountain-pass/server-agnostic-functions/tree/main/examples/cloudflare/src/index.ts)
+- ✅ [`ExpressWrapper`](https://github.com/mountain-pass/server-agnostic-functions/tree/main/examples/express/index.ts)
 - ❓ *Your Provider?*
 
 ## Building your own Provider wrapper
