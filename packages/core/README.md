@@ -51,7 +51,7 @@ Then to host it, wrap it in your service provider's wrapper.
 
 Below is an example using the `ExpressWrapper.wrap()`:
 
-```
+```javascript
 const app = express()
 app.use(ExpressWrapper.wrap(express.Router(), router))
 app.listen(4000)
