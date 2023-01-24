@@ -20,7 +20,7 @@ Some providers do **not** support hosting multiple functions. Some require you t
 
 **Testing**
 
-Some providers require you to install their command line utilities, so you can test and develop locally. Bleagh!
+Some providers require you to install their command line utilities (and don't support your cpu architecture), so you can test and develop locally. Bleagh!
 
 # Problem Outline
 

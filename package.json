@@ -34,6 +34,8 @@
   "scripts": {
     "l:bootstrap": "lerna bootstrap",
     "l:install": "lerna exec npm install",
+    "l:lint": "lerna exec npm run lint",
+    "l:lint:fix": "lerna exec npm run lint:fix",
     "l:test": "lerna run test",
     "l:build": "lerna run build",
     "l:bump": "lerna version patch --yes",

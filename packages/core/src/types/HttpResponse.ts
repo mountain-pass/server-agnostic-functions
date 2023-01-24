@@ -9,7 +9,7 @@ export class HttpResponse<UnderlyingResponse = any> {
     const res = new HttpResponse()
     res.statusCode = statusCode
     if (typeof object === 'string') {
-      res.data = object
+      res.body = object
     } else if (typeof object === 'undefined') {
       // do nothing
     } else {
@@ -21,7 +21,7 @@ export class HttpResponse<UnderlyingResponse = any> {
   // three fields only
   statusCode: number = 200
   headers: KeyValueMap = {}
-  data: string = ''
+  body: string = ''
 
   /**
    * Provides access to the underlying response object.
@@ -35,9 +35,9 @@ export class HttpResponse<UnderlyingResponse = any> {
     return this
   }
 
-  send = (data: string) => (this.data = data)
+  send = (data: string) => (this.body = data)
   json = (object: object) => {
     this.headers['Content-Type'] = 'application/json'
-    this.data = JSON.stringify(object)
+    this.body = JSON.stringify(object)
   }
 }

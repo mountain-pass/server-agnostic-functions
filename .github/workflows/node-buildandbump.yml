@@ -24,6 +24,7 @@ jobs:
       - run: |
           npm i
           npm run l:bootstrap
+          npm run l:lint
           npm run l:test
           npm run l:build
 

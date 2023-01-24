@@ -28,7 +28,7 @@ describe('AgnosticRouter', () => {
             const res = new HttpResponse()
             await router.handle(req, res)
             expect(res.statusCode).to.equal(200)
-            expect(res.data).to.equal('{"message":"hi","userId":"123"}')
+            expect(res.body).to.equal('{"message":"hi","userId":"123"}')
         })
 
         it('should reject invalid requests', async () => {
@@ -36,7 +36,7 @@ describe('AgnosticRouter', () => {
             const res = new HttpResponse()
             await router.handle(req, res)
             expect(res.statusCode).to.equal(404)
-            expect(res.data).to.equal('Not found')
+            expect(res.body).to.equal('Not found')
         })
 
     })

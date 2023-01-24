@@ -74,7 +74,7 @@ export const wrap = (expressRouter: Router, agnosticRouter: AgnosticRouter): Rou
       // map outgoing response to express response
       res.status(response.statusCode)
       Object.entries(response.headers).forEach(([key, value]) => res.setHeader(key, value))
-      res.send(response.data)
+      res.send(response.body)
     } catch (e: any) {
       console.log(`ERROR: ${e.message}`, { stack: e.stack })
       res.status(500).send(e.message)

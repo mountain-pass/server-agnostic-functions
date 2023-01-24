@@ -1,0 +1,6 @@
+{
+    "watch": ["src", "swagger-root.yml", "test"],
+    "ext": "ts,js,json,yml,csv",
+    "ignore": ["src/**/*.spec.ts", "**/_snapshots*/**", "**/cache*/**"],
+    "exec": "ts-node ./src/index.ts"
+}
