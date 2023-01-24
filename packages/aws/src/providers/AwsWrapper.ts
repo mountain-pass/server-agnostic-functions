@@ -47,7 +47,7 @@ export const wrap = (agnosticRouter: AgnosticRouter<RequestParams, undefined>) =
     try {
       // map request
       const request = new HttpRequest()
-      request.method = request.method.toLowerCase() as HttpMethod
+      request.method = event.httpMethod.toLowerCase() as HttpMethod
       request.path = event.path
       // map headers
       request.headers = {
