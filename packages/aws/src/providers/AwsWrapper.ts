@@ -12,7 +12,8 @@ type RequestParams = { context: Context; event: APIGatewayEvent }
 
 /** For mapping string => string. */
 const mapKeyValueParamsToKeyValueMap = (
-  params: { [key: string]: string | string[] | undefined } | null
+  params: { [key: string]: string | string[] | undefined } | null,
+  normaliseKeys: boolean = false
 ): KeyValueMap => {
   if (typeof params === 'undefined' || params === null) {
     return {}
@@ -20,12 +21,13 @@ const mapKeyValueParamsToKeyValueMap = (
   return Object.fromEntries(
     Object.entries(params)
       .filter((keyValue) => keyValue.length > 1 && typeof keyValue[1] !== 'undefined')
-      .map(([k, v]) => [k, typeof v === 'string' ? (v as string) : ''])
+      .map(([k, v]) => [normaliseKeys ? k.toLowerCase() : k, typeof v === 'string' ? (v as string) : ''])
   )
 }
 /** For mapping string => string[]. */
 const mapKeyValueParamsToKeyValueArrayMap = (
-  params: { [key: string]: string | string[] | undefined } | null
+  params: { [key: string]: string | string[] | undefined } | null,
+  normaliseKeys: boolean = false
 ): KeyValueArrayMap => {
   if (typeof params === 'undefined' || params === null) {
     return {}
@@ -33,7 +35,7 @@ const mapKeyValueParamsToKeyValueArrayMap = (
   return Object.fromEntries(
     Object.entries(params)
       .filter((keyValue) => keyValue.length > 1 && typeof keyValue[1] !== 'undefined')
-      .map(([k, v]) => [k, typeof v === 'string' ? [v] : (v as string[])])
+      .map(([k, v]) => [normaliseKeys ? k.toLowerCase() : k, typeof v === 'string' ? [v] : (v as string[])])
   )
 }
 
@@ -51,8 +53,8 @@ export const wrap = (agnosticRouter: AgnosticRouter<RequestParams, undefined>) =
       request.path = event.path
       // map headers
       request.headers = {
-        ...mapKeyValueParamsToKeyValueArrayMap(event.headers),
-        ...mapKeyValueParamsToKeyValueArrayMap(event.multiValueHeaders)
+        ...mapKeyValueParamsToKeyValueArrayMap(event.headers, true),
+        ...mapKeyValueParamsToKeyValueArrayMap(event.multiValueHeaders, true)
       }
       // map query
       request.query = {
@@ -63,6 +65,8 @@ export const wrap = (agnosticRouter: AgnosticRouter<RequestParams, undefined>) =
       request.params = {
         ...mapKeyValueParamsToKeyValueMap(event.pathParameters)
       }
+      // map body
+      request.body = event.body === null ? '' : event.body
       // map underlying resources
       request.underlying = { event, context }
 

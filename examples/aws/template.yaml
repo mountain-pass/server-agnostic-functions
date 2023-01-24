@@ -39,7 +39,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /api/{anyPath+}
+            Path: /{anyPath+}
             Method: ANY
 
 Outputs:

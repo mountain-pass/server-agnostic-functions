@@ -15,6 +15,8 @@ Or
 Run curl:
 
 ```
+curl -v http://localhost:3000/api
+
 curl http://localhost:3000/api/hello?name=bob
 
 curl -X POST http://localhost:3000/api/upload?name=bob \
