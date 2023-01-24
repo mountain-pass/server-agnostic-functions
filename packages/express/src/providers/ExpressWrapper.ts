@@ -37,14 +37,15 @@ export const wrap = (expressRouter: Router, agnosticRouter: AgnosticRouter): Rou
       const request = new HttpRequest()
       request.method = req.method.toLowerCase() as HttpMethod
       request.path = req.originalUrl
+      // map body
       request.body = req.body
-      // setup headers
+      // map headers
       if (req.headers) {
         Object.entries(req.headers).forEach(([key, value]) => {
           request.headers[key.toLowerCase()] = Array.isArray(value) ? (value as string[]) : [value as string]
         })
       }
-      // setup query parameters
+      // map query
       if (req.query) {
         Object.entries(req.query).forEach(([key, value]) => {
           if (Array.isArray(value) && value.length > 0) {
@@ -61,17 +62,21 @@ export const wrap = (expressRouter: Router, agnosticRouter: AgnosticRouter): Rou
           }
         })
       }
-      // setup body
+      // map body
       if (request.method === 'post' || request.method === 'put') {
         request.body = await bodyToText(req)
       }
+      // map underlying
       request.underlying = req
+
       // setup http response
       const response = new HttpResponse()
       response.underlying = res
+
       // invoke the handler
       await agnosticRouter.handle(request, response)
-      // map outgoing response to express response
+
+      // map response
       res.status(response.statusCode)
       Object.entries(response.headers).forEach(([key, value]) => res.setHeader(key, value))
       res.send(response.body)

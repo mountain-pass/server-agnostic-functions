@@ -8,7 +8,7 @@ import {
   KeyValueMap
 } from '@mountainpass/server-agnostic-functions-core'
 
-type RequestParams = { context: Context; event: APIGatewayEvent }
+export type AwsRequest = { context: Context; event: APIGatewayEvent }
 
 /** For mapping string => string. */
 const mapKeyValueParamsToKeyValueMap = (
@@ -44,7 +44,7 @@ const mapKeyValueParamsToKeyValueArrayMap = (
  * @param agnosticRouter
  * @returns
  */
-export const wrap = (agnosticRouter: AgnosticRouter<RequestParams, undefined>) => {
+export const wrap = (agnosticRouter: AgnosticRouter<AwsRequest, undefined>) => {
   return async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
     try {
       // map request

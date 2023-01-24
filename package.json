@@ -40,7 +40,8 @@
     "l:build": "lerna run build",
     "l:bump": "lerna version patch --yes",
     "l:publish": "lerna publish from-package --yes",
-    "l:graph": "nx graph"
+    "l:graph": "nx graph",
+    "precommit": "npm run l:lint && npm run l:test && npm run l:build"
   },
   "devDependencies": {
     "lerna": "^6.4.1"

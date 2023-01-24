@@ -4,7 +4,7 @@ import { HttpRequest } from '../types/HttpRequest'
 
 /**
  * Handler for a Http Request.
- * 
+ *
  * Modify the response object to send a response to the client. The return object is ignored.
  */
 export type RouteHandler<UnderlyingRequest = any, UnderlyingResponse = any> = (
