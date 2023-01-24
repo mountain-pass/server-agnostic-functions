@@ -6,13 +6,17 @@ import { KeyValueArrayMap } from '../types/HttpTypes'
  * @returns e.g. '/foo/(?<bar>[^/]+)/test'
  */
 export const convertToRegexMatcher = (pathMatcher: string) => {
-  return new RegExp(
-    '^' +
-      pathMatcher.replace(/\{(\w+)\}/g, (match, group) => {
-        return match ? `(?<${group}>[^/?]+)` : ''
-      }) +
-      '(\\?|$)'
-  )
+  let regexStr = pathMatcher.replace(/\{(\w+)\}/g, (match, group) => {
+    return match ? `(?<${group}>[^/?]+)` : ''
+  })
+  if (regexStr.endsWith('/*')) { // support '/*' match all wildcards
+    regexStr = `^${regexStr}.*(\\?|$)`
+  } else if (regexStr.endsWith('/')) { // support optional trailing slash
+    regexStr = `^${regexStr}?(\\?|$)`
+  } else {
+    regexStr = `^${regexStr}/?(\\?|$)` // add optional trailing slash
+  }
+  return new RegExp(regexStr)
 }
 
 /**
@@ -23,9 +27,11 @@ export const convertToRegexMatcher = (pathMatcher: string) => {
  */
 export const parsePathParams = (actualPath: string, regexPathMatcher: RegExp) => {
   const match = regexPathMatcher.exec(actualPath)
-  if (match === null)
+  if (match === null) {
     throw new Error(`Path '${actualPath}' does not match path matcher '${regexPathMatcher.toString()}'.`)
-  return match.groups
+  }
+  // can still be undefined... so return an empty object
+  return match.groups || {}
 }
 
 /**

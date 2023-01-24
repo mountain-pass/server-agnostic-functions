@@ -83,8 +83,10 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
       if (regex.test(req.path)) {
         req.params = { ...req.params, ...parsePathParams(req.path, regex) }
         return true
+      } else {
+        console.log(`no route found - req: ${req.method} ${req.path}`)
+        return false
       }
-      return false
     })
     if (route) {
       await route.value(req, res)

@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/hello', (req, res) => {
-  res.send(`hello ${req.query.name[0] || req.params.name || 'world'}`)
+  res.send(`hello ${req.query.name || req.params.name || 'world'}`)
 })
 
 router.post('/upload', (req, res) => {

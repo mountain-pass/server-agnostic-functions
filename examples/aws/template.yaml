@@ -39,8 +39,8 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /
-            Method: GET
+            Path: /api/{anyPath+}
+            Method: ANY
 
 Outputs:
   WebEndpoint:

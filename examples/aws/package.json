@@ -4,15 +4,14 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
-        "common": "../../_common",
-        "@mountainpass/server-agnostic-functions-aws": "../../../packages/aws"
+        "@mountainpass/server-agnostic-functions-aws": "1.0.23"
     },
     "devDependencies": {
         "aws-sdk-client-mock": "^2.0.0",
         "jest": "^29.2.1"
     },
     "scripts": {
-        "aws:installcli": "brew install aws-sam-cli",
+        "aws:installcli:mac": "brew install aws-sam-cli",
         "build": "sam build",
         "start:arm": "sam local start-api",
         "start:x86_64": "echo 'TODO Please update template.yaml to use the x86_64 architecture'",
