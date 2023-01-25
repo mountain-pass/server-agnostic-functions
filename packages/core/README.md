@@ -97,3 +97,11 @@ process.env.STATEFUL_MODE = 'true'
 - Programatically creating the Routes, lends itself to automatic API documentation.
 
 - Would be good if we could access the environment variables via the Request context. e.g. req.env
+
+- Pros vs cons - having larger library slows startup time
+
+- Provider comparison?
+
+- Diagram?
+
+- No longer have to wrap my Express routes in an async error handler

@@ -1,0 +1,44 @@
+{
+    "body": "{ \"name\": \"fred\" }",
+    "cookies": [],
+    "headers": {
+      "host": "localhost:3000",
+      "user-agent": "curl/7.79.1",
+      "accept": "*/*",
+      "content-type": "application/json",
+      "content-length": "18"
+    },
+    "isBase64Encoded": false,
+    "pathParameters": {
+      "default": "api/upload"
+    },
+    "queryStringParameters": {
+      "name": "bob,fred"
+    },
+    "rawPath": "/api/upload",
+    "rawQueryString": "name=bob&name=fred",
+    "requestContext": {
+      "accountId": "offlineContext_accountId",
+      "apiId": "offlineContext_apiId",
+      "authorizer": {
+        "jwt": {}
+      },
+      "domainName": "offlineContext_domainName",
+      "domainPrefix": "offlineContext_domainPrefix",
+      "http": {
+        "method": "POST",
+        "path": "/api/upload",
+        "protocol": "HTTP/1.1",
+        "sourceIp": "::1",
+        "userAgent": "curl/7.79.1"
+      },
+      "requestId": "offlineContext_resourceId",
+      "routeKey": "$default",
+      "stage": "$default",
+      "time": "25/Jan/2023:16:34:19 +1100",
+      "timeEpoch": 1674624859187
+    },
+    "routeKey": "$default",
+    "stageVariables": null,
+    "version": "2.0"
+  }

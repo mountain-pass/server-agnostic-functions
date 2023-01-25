@@ -40,8 +40,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "testx": "ts-mocha -p tsconfig.test.json --timeout 3000 --bail --recursive './test/**/*.test.ts' './test/*.test.ts' --reporter-option maxDiffSize=8128",
-    "test": "echo disabled tests.",
+    "test": "ts-mocha -p tsconfig.test.json --timeout 3000 --bail --recursive './test/**/*.test.ts' --reporter-option maxDiffSize=8128",
     "test:watch": "nodemon --watch test --watch src --exec 'npm test'",
     "build": "microbundle --format modern,cjs --sourcemap false src/*.ts src/**/*.ts",
     "version-bump": "npm version patch && git push && git push --tags",

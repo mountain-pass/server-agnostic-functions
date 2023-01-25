@@ -1,4 +1,4 @@
-import { KeyValueMap, nonenumerable } from './HttpTypes'
+import { KeyValueArrayMap, nonenumerable } from './HttpTypes'
 
 /**
  * Generic representation of a Http Response.
@@ -18,7 +18,7 @@ export class HttpResponse<UnderlyingResponse = any> {
 
   // three fields only
   statusCode: number = 200
-  headers: KeyValueMap = {}
+  headers: KeyValueArrayMap = {}
   body: string = ''
 
   /**
@@ -35,7 +35,7 @@ export class HttpResponse<UnderlyingResponse = any> {
 
   send = (data: string) => (this.body = data)
   json = (object: object) => {
-    this.headers['Content-Type'] = 'application/json'
+    this.headers['Content-Type'] = ['application/json']
     this.body = JSON.stringify(object)
   }
 }

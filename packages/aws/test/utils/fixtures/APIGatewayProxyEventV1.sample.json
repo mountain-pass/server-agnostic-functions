@@ -1,0 +1,80 @@
+{
+  "body": "{ \"name\": \"fred\" }",
+  "headers": {
+    "Accept": "*/*",
+    "Content-Length": "18",
+    "Content-Type": "application/json",
+    "Host": "localhost:3000",
+    "User-Agent": "curl/7.79.1",
+    "X-Forwarded-Port": "3000",
+    "X-Forwarded-Proto": "http"
+  },
+  "httpMethod": "POST",
+  "isBase64Encoded": false,
+  "multiValueHeaders": {
+    "Accept": [
+      "*/*"
+    ],
+    "Content-Length": [
+      "18"
+    ],
+    "Content-Type": [
+      "application/json"
+    ],
+    "Host": [
+      "localhost:3000"
+    ],
+    "User-Agent": [
+      "curl/7.79.1"
+    ],
+    "X-Forwarded-Port": [
+      "3000"
+    ],
+    "X-Forwarded-Proto": [
+      "http"
+    ]
+  },
+  "multiValueQueryStringParameters": {
+    "name": [
+      "bob",
+      "fred"
+    ]
+  },
+  "path": "/api/upload",
+  "pathParameters": {
+    "anyPath": "api/upload"
+  },
+  "queryStringParameters": {
+    "name": "fred"
+  },
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "1234567890",
+    "domainName": "localhost:3000",
+    "extendedRequestId": null,
+    "httpMethod": "POST",
+    "identity": {
+      "accountId": null,
+      "apiKey": null,
+      "caller": null,
+      "cognitoAuthenticationProvider": null,
+      "cognitoAuthenticationType": null,
+      "cognitoIdentityPoolId": null,
+      "sourceIp": "127.0.0.1",
+      "user": null,
+      "userAgent": "Custom User Agent String",
+      "userArn": null
+    },
+    "path": "/{anyPath+}",
+    "protocol": "HTTP/1.1",
+    "requestId": "1bff998c-afd0-463e-a5a6-0afeb44928f0",
+    "requestTime": "25/Jan/2023:05:35:45 +0000",
+    "requestTimeEpoch": 1674624945,
+    "resourceId": "123456",
+    "resourcePath": "/{anyPath+}",
+    "stage": "Prod"
+  },
+  "resource": "/{anyPath+}",
+  "stageVariables": null,
+  "version": "1.0"
+}
