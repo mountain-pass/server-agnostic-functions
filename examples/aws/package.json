@@ -13,6 +13,7 @@
     "scripts": {
         "aws:installcli:mac": "brew install aws-sam-cli",
         "build": "sam build",
+        "deploy": "sam deploy --guided",
         "start:arm": "sam local start-api",
         "start:x86_64": "echo 'TODO Please update template.yaml to use the x86_64 architecture'",
         "test": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js"

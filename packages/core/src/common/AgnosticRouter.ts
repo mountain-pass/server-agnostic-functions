@@ -72,6 +72,8 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
     this.routes.trace.push({ key: convertToRegexMatcher(path), value: handler })
   }
 
+  // TODO gzip, deflate, br + etag?
+
   /**
    * Handles the routing of the request.
    * @param req
@@ -80,13 +82,14 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
    */
   handle = async (req: HttpRequest<UnderlyingRequest>, res: HttpResponse<UnderlyingResponse>): Promise<void> => {
     console.log(`req: ${req.method} ${req.path}`)
+    // TODO optimise this based on path
     const route = this.routes[req.method].find(({ key: regex }) => {
       // matches, add path params and return true
       if (regex.test(req.path)) {
         req.params = { ...req.params, ...parsePathParams(req.path, regex) }
         return true
       } else {
-        console.log(`no route found - req: ${req.method} ${req.path}`)
+        // route not handled by this route, continue searching
         return false
       }
     })
