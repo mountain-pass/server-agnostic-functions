@@ -1,4 +1,4 @@
-export type QueryablePromise<Type> = Promise<Type> & {
+export interface QueryablePromise<Type> extends Promise<Type> {
   isFulfilled: () => boolean
   isPending: () => boolean
   isRejected: () => boolean

@@ -9,7 +9,7 @@ export interface FetchResponse<Type> {
   hash?: string
 }
 
-export type FetchResponseQueryablePromise<Type> = QueryablePromise<FetchResponse<Type>>
+export interface FetchResponseQueryablePromise<Type> extends QueryablePromise<FetchResponse<Type>> {}
 
 export class InternalCacheEntry<Type> {
   promise: FetchResponseQueryablePromise<Type>
@@ -32,11 +32,11 @@ export class InternalCacheEntry<Type> {
  *
  * Use the previous hash/data (if available and fulfilled), to avoid fetching data if source data hasn't changed
  */
-export type Fetcher<Type> = {
+export interface Fetcher<Type> {
   (key: string, prevData?: FetchResponseQueryablePromise<Type>): Promise<FetchResponse<Type>> | FetchResponse<Type>
 }
 
-export type InMemoryCacherOptions = {
+export interface InMemoryCacherOptions {
   maxAgeMs: number
   maxItems?: number
 }
