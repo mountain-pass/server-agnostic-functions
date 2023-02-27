@@ -38,8 +38,8 @@
     "l:lint:fix": "lerna exec npm run lint:fix",
     "l:test": "lerna run test",
     "l:build": "lerna run build",
-    "l:bump": "lerna version patch --yes",
-    "l:publish": "lerna publish from-package --yes",
+    "l:bump": "lerna version patch --yes --no-private",
+    "l:publish": "lerna publish from-package --yes --include-merged-tags",
     "l:graph": "nx graph",
     "precommit": "npm run l:lint && npm run l:test && npm run l:build"
   },
