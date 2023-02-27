@@ -24,6 +24,8 @@ export type HttpMethodLookup = { [key in HttpMethod]: RegexRoutes }
  * A generic HttpRequest Router.
  */
 export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
+  middleware: RouteHandler<UnderlyingRequest, UnderlyingResponse>[] = []
+
   routes: HttpMethodLookup = {
     get: [],
     post: [],
@@ -34,6 +36,14 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
     options: [],
     connect: [],
     trace: []
+  }
+
+  /**
+   * Used to provide intercepting middleware to every request.
+   * @param handler
+   */
+  use = (handler: RouteHandler<UnderlyingRequest, UnderlyingResponse>) => {
+    this.middleware.push(handler)
   }
 
   get = (path: string, handler: RouteHandler<UnderlyingRequest, UnderlyingResponse>) => {
@@ -82,6 +92,17 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
    */
   handle = async (req: HttpRequest<UnderlyingRequest>, res: HttpResponse<UnderlyingResponse>): Promise<void> => {
     console.log(`req: ${req.method} ${req.path}`)
+    // perform middleware
+    try {
+      for (const middleware of this.middleware) {
+        await middleware(req, res)
+        if (res.ended) return
+      }
+    } catch (err: any) {
+      // if error, break out of middleware
+      console.error('Error#1: ' + err.message, { stack: err.stack })
+    }
+
     // TODO optimise this based on path
     const route = this.routes[req.method].find(({ key: regex }) => {
       // matches, add path params and return true
@@ -94,8 +115,14 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
       }
     })
     if (route) {
-      await route.value(req, res)
+      const handler = route.value
+      await handler(req, res)
+      if (!res.ended) {
+        console.error(`Error#2: Route ${req.method} ${req.path} did not end the response.`)
+        res.status(404).send('Not found')
+      }
     } else {
+      console.info(`Route ${req.method} ${req.path} not found.`)
       res.status(404).send('Not found')
     }
   }

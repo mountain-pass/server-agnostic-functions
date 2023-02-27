@@ -20,6 +20,7 @@ export class HttpResponse<UnderlyingResponse = any> {
   statusCode: number = 200
   headers: KeyValueArrayMap = {}
   body: string = ''
+  ended: boolean = false
 
   /**
    * Provides access to the underlying response object.
@@ -33,9 +34,16 @@ export class HttpResponse<UnderlyingResponse = any> {
     return this
   }
 
-  send = (data: string) => (this.body = data)
+  send = (data: string) => {
+    this.body = data
+    this.ended = true
+  }
+
   json = (object: object) => {
     this.headers['Content-Type'] = ['application/json']
     this.body = JSON.stringify(object)
+    this.ended = true
   }
+
+  end = () => (this.ended = true)
 }
