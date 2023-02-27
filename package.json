@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/mountain-pass/server-agnostic-functions#readme",
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "workspaces": [
     "packages/*"
@@ -38,7 +38,8 @@
     "l:lint:fix": "lerna exec npm run lint:fix",
     "l:test": "lerna run test",
     "l:build": "lerna run build",
-    "l:bump": "lerna version patch --yes --no-private --force-publish --ignore-changes --message '%s [skip ci]'",
+    "l:prebump": "npm install --package-lock-only --ignore-scripts --nohoist=*",
+    "l:bump": "lerna version patch --yes --no-private --force-publish --message '%s [skip ci]'",
     "l:publish": "lerna publish from-package --yes",
     "l:graph": "nx graph",
     "precommit": "npm run l:lint && npm run l:test && npm run l:build"
