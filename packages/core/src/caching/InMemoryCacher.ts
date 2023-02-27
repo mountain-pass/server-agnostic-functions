@@ -1,5 +1,5 @@
 import { createHash } from 'crypto'
-import { makeQuerablePromise, QueryablePromise } from './MakeQueryablePromise'
+import { makeQuerablePromise, QueryablePromise } from './makeQueryablePromise'
 export const hashString = (str: string) => createHash('sha1').update(str).digest().toString('base64')
 
 export type FetchResponse<Type> = {
