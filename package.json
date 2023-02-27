@@ -44,6 +44,6 @@
     "precommit": "npm run l:lint && npm run l:test && npm run l:build"
   },
   "devDependencies": {
-    "lerna": "^6.4.1"
+    "lerna": "6.5.1"
   }
 }
