@@ -32,6 +32,10 @@
     "packages/*"
   ],
   "scripts": {
+    "prepare": "echo disabled",
+    "preversion": "echo disabled",
+    "version": "echo disabled",
+    "postversion": "echo disabled",
     "l:bootstrap": "lerna bootstrap",
     "l:install": "lerna exec npm install",
     "l:lint": "lerna exec npm run lint",
