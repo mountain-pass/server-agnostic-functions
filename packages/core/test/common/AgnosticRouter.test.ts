@@ -1,11 +1,17 @@
 import { expect } from 'chai'
-import { describe, it } from 'mocha'
+import { describe, it, beforeEach } from 'mocha'
 import { HttpRequest } from '../../src/types/HttpRequest'
 import { HttpResponse } from '../../src/types/HttpResponse'
-import { router } from './fixtures/MySimpleApi'
+import { buildRouter } from './fixtures/MySimpleApi'
 
 describe('AgnosticRouter', () => {
   describe('given the path "/users/{userId}"', () => {
+    let router = buildRouter()
+
+    beforeEach(() => {
+      router = buildRouter()
+    })
+
     it('should handle valid requests', async () => {
       // build request
       const req = HttpRequest.fromDefaults({ path: '/users/123' })
@@ -80,6 +86,22 @@ describe('AgnosticRouter', () => {
       // verify response
       expect(res.statusCode).to.eql(401)
       expect(res.body).to.eql('User is not authorized')
+    })
+
+    it('if middleware throws an error, then no further processing occurs', async () => {
+      // build request
+      const req = HttpRequest.fromDefaults({ path: '/users/123' })
+      const res = new HttpResponse()
+
+      // invoke routes
+      router.use(async () => {
+        throw new Error('unexpected condition')
+      })
+      await router.handle(req, res)
+
+      // verify response
+      expect(res.statusCode).to.eql(500)
+      expect(res.body).to.eql('Internal Server Error')
     })
   })
 })

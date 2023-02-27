@@ -101,6 +101,8 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
     } catch (err: any) {
       // if error, break out of middleware
       console.error('Error#1: ' + err.message, { stack: err.stack })
+      res.status(500).send('Internal Server Error')
+      return
     }
 
     // TODO optimise this based on path
