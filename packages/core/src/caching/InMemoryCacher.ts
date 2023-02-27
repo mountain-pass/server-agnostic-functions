@@ -2,7 +2,7 @@ import { createHash } from 'crypto'
 import { makeQuerablePromise, QueryablePromise } from './makeQueryablePromise'
 export const hashString = (str: string) => createHash('sha1').update(str).digest().toString('base64')
 
-export type FetchResponse<Type> = {
+export interface FetchResponse<Type> {
   /** The data object */
   data: Type
   /** Hash - optional hash of the object (can be used for etag or versioning). */
