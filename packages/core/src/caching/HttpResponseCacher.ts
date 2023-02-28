@@ -1,8 +1,6 @@
-import { createHash } from 'crypto'
 import { HttpRequest } from '../types/HttpRequest'
 import { HttpResponse } from '../types/HttpResponse'
 import { Fetcher, InMemoryCacher, InMemoryCacherOptions } from './InMemoryCacher'
-export const hashString = (str: string) => createHash('sha1').update(str).digest().toString('base64')
 
 /**
  * Stores an item in memory for a given amount of time.
