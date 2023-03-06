@@ -28,8 +28,6 @@ This library provides an `AgnosticRouter` class (and `HttpRequest`, `HttpRespons
 
 Due to the simplified interface and the inbuilt Routing layer, we can reliably unit test our Router in isolation, with the confidence that the hosted service will behave consistently at runtime.
 
-Check out the [AgnosticRouter.test.ts](https://github.com/mountain-pass/server-agnostic-functions/blob/main/packages/core/test/common/AgnosticRouter.test.ts) unit test for usage examples.
-
 # Example Usage
 
 Here is an example `AgnosticRouter` implementation. e.g.
