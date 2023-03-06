@@ -26,13 +26,13 @@ Every service provider has reinvented it's own serverless function interfaces wh
 
 This library provides an `AgnosticRouter` class (and `HttpRequest`, `HttpResponse` interfaces), so that functions can be built using a standard (HTTP) interface, and then wrapped in it's respective runtime `Wrapper`.
 
-Due to the simplified interface and the inbuilt Routing layer, we can now reliably unit test our Router in isolation (free from servers), with the confidence that the hosted service will behave consistently at runtime.
+Due to the simplified interface and the inbuilt Routing layer, we can reliably unit test our Router in isolation (free from servers), with the confidence that the hosted service will behave consistently at runtime.
 
 Check out the [AgnosticRouter.test.ts](https://github.com/mountain-pass/server-agnostic-functions/blob/main/packages/core/test/common/AgnosticRouter.test.ts) unit test for usage examples.
 
 # Example Usage
 
-Here is an example of an `AgnosticRouter` implementation. e.g.
+Here is an example `AgnosticRouter` implementation. e.g.
 
 ```javascript
 import { AgnosticRouter } from '@mountainpass/server-agnostic-functions-core'
@@ -47,9 +47,7 @@ router.get('/services/getUsersByQueryId', (req, res) => {
 })
 ```
 
-Then to host it, wrap it in your service provider's wrapper.
-
-Below is an example using the `ExpressWrapper.wrap()`. e.g.
+Then to host it, wrap it in your service provider's wrapper. Below is an example using `ExpressWrapper`. e.g.
 
 ```javascript
 import ExpressWrapper from '@mountainpass/server-agnostic-functions-express'
@@ -87,12 +85,16 @@ router.get('/', ...)
 router.get('/some/path', ...)
 
 // path parameters
-router.get('/user/{userId}/order/{orderId}', (req, res) => res.json({ user: req.params.userId, order: req.params.orderId }))
+router.get('/user/{userId}/order/{orderId}', (req, res) => {
+    res.json({ user: req.params.userId, order: req.params.orderId })
+})
 
 // regular expressions and named groups
 router.get(/^\/some\/path$/, ...)
 router.get('/some/path/.*', ...)
-router.get('/user/(?<userId>[^/?]+)/order/(?<orderId>[^/?]+)', (req, res) => res.json({ user: req.params.userId, order: req.params.orderId }))
+router.get('/user/(?<userId>[^/?]+)/order/(?<orderId>[^/?]+)', (req, res) => {
+    res.json({ user: req.params.userId, order: req.params.orderId })
+})
 ```
 
 # Middleware
