@@ -86,4 +86,34 @@ describe('HttpPathUtils', () => {
       })
     })
   })
+
+  describe('should support wildcards "/*" and optional trailing slashes', () => {
+    const regex = convertToRegexMatcher('/users/*')
+
+    const shouldMatch: StringAny[] = [
+      // no query params
+      ['/users', {}],
+      ['/users/', {}],
+      ['/users/abc', {}],
+      ['/users/abc/foo/dog', {}],
+      // with query params
+      ['/users?name=bob', {}],
+      ['/users/?name=bob', {}],
+      ['/users/abc?name=bob', {}],
+      ['/users/abc/foo/dog?name=bob', {}]
+    ]
+    const shouldNotMatch = ['/invalidpath']
+
+    shouldMatch.forEach(([path, expected]) => {
+      it(`should match "${path}"`, () => {
+        expect(regex.test(path), regex.toString()).to.equal(true)
+        expect(parsePathParams(path, regex)).to.deep.equal(expected)
+      })
+    })
+    shouldNotMatch.forEach((path) => {
+      it(`should not match "${path}"`, () => {
+        expect(regex.test(path)).to.not.equal(true)
+      })
+    })
+  })
 })

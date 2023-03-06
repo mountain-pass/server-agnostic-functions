@@ -41,7 +41,7 @@
   },
   "scripts": {
     "test": "ts-mocha -p tsconfig.test.json --timeout 3000 --bail --recursive './test/**/*.test.ts' './test/*.test.ts' --reporter-option maxDiffSize=8128",
-    "test:watch": "nodemon --watch test --watch src --exec 'npm test'",
+    "test:watch": "nodemon --watch test --watch src --exec 'npm test --  --grep wip'",
     "build": "microbundle --format modern,cjs --sourcemap false index.ts src/*.ts src/**/*.ts",
     "version-bump": "npm version patch && git push && git push --tags",
     "publish-public": "npm publish --access public",

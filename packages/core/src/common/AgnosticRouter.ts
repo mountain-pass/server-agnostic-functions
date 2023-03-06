@@ -84,6 +84,12 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
 
   // TODO gzip, deflate, br + etag?
 
+  handleRequestOnly = async (req: HttpRequest<UnderlyingRequest>): Promise<HttpResponse<UnderlyingResponse>> => {
+    const res = new HttpResponse<UnderlyingResponse>()
+    await this.handle(req, res)
+    return res
+  }
+
   /**
    * Handles the routing of the request.
    * @param req

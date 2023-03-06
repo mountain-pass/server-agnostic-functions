@@ -1,17 +1,19 @@
 import { expect } from 'chai'
 import { describe, it, beforeEach } from 'mocha'
+import { serveStatic } from '../../src/common/HttpPathUtils'
 import { HttpRequest } from '../../src/types/HttpRequest'
 import { HttpResponse } from '../../src/types/HttpResponse'
 import { buildRouter } from './fixtures/MySimpleApi'
+import path from 'path'
 
 describe('AgnosticRouter', () => {
+  let router = buildRouter()
+
+  beforeEach(() => {
+    router = buildRouter()
+  })
+
   describe('given the path "/users/{userId}"', () => {
-    let router = buildRouter()
-
-    beforeEach(() => {
-      router = buildRouter()
-    })
-
     it('should handle valid requests', async () => {
       // build request
       const req = HttpRequest.fromDefaults({ path: '/users/123' })
@@ -102,6 +104,33 @@ describe('AgnosticRouter', () => {
       // verify response
       expect(res.statusCode).to.eql(500)
       expect(res.body).to.eql('Internal Server Error')
+    })
+  })
+
+  describe('serveStatic', () => {
+    it('should be able to serve static dirs wip', async () => {
+      // setup
+      router.get('/static/(?<path>.*)', serveStatic(path.join(__dirname)))
+      // /static
+      const res1 = await router.handleRequestOnly(HttpRequest.fromDefaults({ path: '/static' }))
+      expect(res1.statusCode).to.eql(404)
+      // /static/
+      const res2 = await router.handleRequestOnly(HttpRequest.fromDefaults({ path: '/static/' }))
+      expect(res2.statusCode).to.eql(200)
+      expect(JSON.parse(res2.body).length).to.eql(3)
+      // /static/foo
+      const res3 = await router.handleRequestOnly(HttpRequest.fromDefaults({ path: '/static/foo' }))
+      expect(res3.statusCode).to.eql(404)
+      // /static/fixtures/filelist
+      const res4 = await router.handleRequestOnly(HttpRequest.fromDefaults({ path: '/static/fixtures/filelist' }))
+      expect(res4.statusCode).to.eql(200)
+      expect(JSON.parse(res4.body)).to.eql(['test.txt'])
+      // /static/fixtures/filelist/test.txt
+      const res5 = await router.handleRequestOnly(
+        HttpRequest.fromDefaults({ path: '/static/fixtures/filelist/test.txt' })
+      )
+      expect(res5.statusCode).to.eql(200)
+      expect(res5.body).to.eql('some content')
     })
   })
 })
