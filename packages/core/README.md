@@ -2,45 +2,41 @@
 
 Provides an interface for writing server-agnostic (serverless) functions.
 
-# Introduction
+# Problem outline
 
-The name "serverless functions" is a misnomer - there's always a server involved. The name intends to demonstrate that the developer is shielded from the operational concerns of having to host & maintain a server.
-
-Being agnostic of the server implementation is the ultimate goal!
-
-However...
+The name "serverless functions" is a misnomer - there's always a server involved. The intention of the term is to demonstrate that the developer is shielded from the operational concerns - however there are still many facets that make serverless implementations difficult to maintain:
 
 **Vendor Lock In**
 
-Every service provider still imposes their own method signatures and functional behaviours on the developer. Not very agnostic!
+providers impose their own method signatures and functional behaviours
 
 **Routing**
 
-Some providers do **not** support hosting multiple functions. Some require you to use their bespoke Router implementation. While others ask you to create YAML configurations. Yuck!
+providers do not support hosting multiple functions (there are workarounds, such as using bespoke Router implementations, or requiring you to create YAML configurations).
 
 **Testing**
 
-Some providers require you to install their command line utilities (and don't support your cpu architecture), so you can test and develop locally. Bleagh!
+providers require you to install their command line utilities so you can test and develop locally.
 
-# Problem Outline
+---
 
-## Problem: 
+Every service provider has reinvented it's own serverless function interfaces which means vendor lockin - we strive to be provider agnostic.
 
-Every service provider has reinvented it's own serverless function interfaces - which is the opposite of being "provider agnostic". (Bad for reasons above.)
-
-## Our Solution:
+## Solution:
 
 This library provides an `AgnosticRouter` class (and `HttpRequest`, `HttpResponse` interfaces), so that functions can be built using a standard (HTTP) interface, and then wrapped in it's respective runtime `Wrapper`.
 
 Due to the simplified interface and the inbuilt Routing layer, we can now reliably unit test our Router in isolation (free from servers), with the confidence that the hosted service will behave consistently at runtime.
 
-Check out the [AgnosticRouter.test.ts](https://github.com/mountain-pass/server-agnostic-functions/blob/main/packages/core/test/common/AgnosticRouter.test.ts) unit test for an example.
+Check out the [AgnosticRouter.test.ts](https://github.com/mountain-pass/server-agnostic-functions/blob/main/packages/core/test/common/AgnosticRouter.test.ts) unit test for usage examples.
 
 # Example Usage
 
-Here is an example of an `AgnosticRouter` implementation.
+Here is an example of an `AgnosticRouter` implementation. e.g.
 
 ```javascript
+import { AgnosticRouter } from '@mountainpass/server-agnostic-functions-core'
+
 const router = new AgnosticRouter()
 
 router.get('/users/{userId}', (req, res) => {
@@ -53,15 +49,84 @@ router.get('/services/getUsersByQueryId', (req, res) => {
 
 Then to host it, wrap it in your service provider's wrapper.
 
-Below is an example using the `ExpressWrapper.wrap()`:
+Below is an example using the `ExpressWrapper.wrap()`. e.g.
 
 ```javascript
+import ExpressWrapper from '@mountainpass/server-agnostic-functions-express'
+
 const app = express()
 app.use(ExpressWrapper.wrap(express.Router(), router))
 app.listen(4000)
 ```
 
 More provider examples are available below.
+
+# Methods and Utilities
+
+The router provides helper functions for all http methods. e.g.
+
+```javascript
+router.get('/mypath', ...)
+router.post('/mypath', ...)
+router.put('/mypath', ...)
+router.delete('/mypath', ...)
+router.patch('/mypath', ...)
+router.head('/mypath', ...)
+router.options('/mypath', ...)
+router.connect('/mypath', ...)
+router.trace('/mypath', ...)
+```
+
+# Paths and Path Parameters
+
+The following example demonstrates the use of paths and path parameters. e.g.
+
+```javascript
+// simple paths
+router.get('/', ...)
+router.get('/some/path', ...)
+
+// path parameters
+router.get('/user/{userId}/order/{orderId}', (req, res) => res.json({ user: req.params.userId, order: req.params.orderId }))
+
+// regular expressions and named groups
+router.get(/^\/some\/path$/, ...)
+router.get('/some/path/.*', ...)
+router.get('/user/(?<userId>[^/?]+)/order/(?<orderId>[^/?]+)', (req, res) => res.json({ user: req.params.userId, order: req.params.orderId }))
+```
+
+# Middleware
+
+There is a `use` function for providing middleware on incoming requests. You may end the response flow at any point, by invoking the `res.json()`, `res.send()`, or `res.end()` functions. e.g.
+
+```javascript
+// apply a global response header
+router.use(async (req: HttpRequest, res: HttpResponse) => {
+    res.headers['access-control-allow-origin'] = ['*']
+})
+
+// reject unauthorised requests
+router.use(async (req: HttpRequest, res: HttpResponse) => {
+    if (!isAuthorised(req)) {
+        res.status(401)
+        res.send('Unauthorised')
+    }
+})
+```
+
+# Utilities
+
+To serve the contents of a static directory, you can use the `serveStatic` helper function. Use the reserved keyword `path`, as the regex named group, to support serving child files/folders. e.g.
+
+```javascript
+import { serveStatic } from '@mountainpass/server-agnostic-functions-core'
+
+router.get('/static/?(?<path>.*)', serveStatic(path.join(__dirname)))
+```
+
+# Caveats
+
+Most serverless functions do not support maintaining websockets or streaming content. As such, we have not included support for these services.
 
 # Provider wrappers & Building your own
 
@@ -81,20 +146,9 @@ Once it's ready, please submit a PR back to the repo, so the entire community ca
 
 The wrapper should be as lightweight and efficient as possible. Avoid adding unneccessary libraries or code.
 
-### Conventions
-
-The `STATEFUL_MODE` environment variable should be set to true, if a stateful hosting framework is being used. This allows functions to know whether they need to clean up shared resources.
-
-```javascript
-process.env.STATEFUL_MODE = 'true'
-```
-
 # Notes
 
 - The `AgnosticRouter` can take Type arguments, for the underlying `Request` and `Response` types. These are then provided via the `underlying` property, on the `HttpRequest` and `HttpResponse` handler parameters.
-
 - The `AgnosticRouter` does not (currently) support nesting child `AgnosticRouter`s.
+- Future updates: Programatically creating the Routes, lends itself to automatic API documentation.
 
-- Programatically creating the Routes, lends itself to automatic API documentation.
-
-- Would be good if we could access the environment variables via the Request context. e.g. req.env
