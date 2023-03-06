@@ -8,15 +8,15 @@ The name "serverless functions" is a misnomer - there's always a server involved
 
 **Vendor Lock In**
 
-providers impose their own method signatures and functional behaviours
+- providers impose their own method signatures and functional behaviours
 
 **Routing**
 
-providers do not support hosting multiple functions (there are workarounds, such as using bespoke Router implementations, or requiring you to create YAML configurations).
+- providers do not support hosting multiple functions (there are workarounds, such as using bespoke Router implementations, or requiring external configuration files)
 
 **Testing**
 
-providers require you to install their command line utilities so you can test and develop locally.
+- providers require you to install their command line utilities so you can test and develop locally
 
 ---
 
