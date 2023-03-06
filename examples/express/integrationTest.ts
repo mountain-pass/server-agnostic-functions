@@ -1,25 +1,24 @@
 import { verifyByCallingRunningHttpServer } from '@mountainpass/server-agnostic-functions-core'
-import { after, before, describe, it } from 'mocha'
 import { spawn } from 'node:child_process'
-import path from 'path'
 import { setTimeout } from 'timers/promises'
 
 /**
  * Starts the server, runs the integration test, then stops the server.
  */
-describe('ExpressWrapper IntegrationTest', () => {
+const init = async () => {
   let command: any
-
-  before(async () => {
-    command = spawn('ts-node', [path.join(__dirname, 'integrationFixture.ts')])
+  try {
+    command = spawn('npm', ['run', 'start'])
     command.stdout.pipe(process.stdout)
     command.stderr.pipe(process.stderr)
-  })
 
-  after(async () => {
+    // verify the endpoint
+    await verifyByCallingRunningHttpServer(100, 'http://localhost:3000')
+
+  } finally {
     await setTimeout(1000)
     command.kill()
-  })
+  }
+}
 
-  it('running integration tests should pass', () => verifyByCallingRunningHttpServer()).timeout(10000)
-})
+init()

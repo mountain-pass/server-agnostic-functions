@@ -3,7 +3,7 @@
 // Run with ./test/integrationFixture.ts
 
 import express from 'express'
-import { diagnosticRouter } from '@mountainpass/server-agnostic-functions-core/diagnostics'
+import { diagnosticRouter } from '@mountainpass/server-agnostic-functions-core'
 import { ExpressWrapper } from '../src/providers/ExpressWrapper'
 
 const app = express()

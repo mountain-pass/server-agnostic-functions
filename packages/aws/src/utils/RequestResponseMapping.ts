@@ -14,6 +14,7 @@ import {
 } from 'aws-lambda'
 
 export type AwsRequest = { context: Context; event: APIGatewayProxyEvent | APIGatewayProxyEventV2 }
+export type AwsHandler = (event: any, context: Context) => Promise<APIGatewayProxyResult>
 
 /** For mapping string => string. */
 const mapKeyValueParamsToKeyValueMap = (
@@ -66,9 +67,9 @@ const mapV2QueryParamsToKeyValueArrayMap = (
  */
 export const mapRequest = <UnderlyingRequest = any>(
   untypedEvent: any,
-  context: Context
+  context: Context,
+  request: HttpRequest = new HttpRequest()
 ): HttpRequest<UnderlyingRequest> => {
-  const request = new HttpRequest()
   if (typeof untypedEvent.version === 'undefined' || untypedEvent.version === '1.0') {
     // version 1.0
     // map request

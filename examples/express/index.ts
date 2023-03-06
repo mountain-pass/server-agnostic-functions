@@ -1,9 +1,10 @@
 
-import MyAgnosticRoutes from 'common/src/MyAgnosticRoutes'
-import { wrap } from '@mountainpass/server-agnostic-functions-express'
+import { diagnosticRouter } from '@mountainpass/server-agnostic-functions-core'
+import { ExpressWrapper } from '@mountainpass/server-agnostic-functions-express'
 import express from 'express'
 
-// wrap the router in an express app
 const app = express()
-app.use(wrap(express.Router(), MyAgnosticRoutes))
-app.listen(8787, () => console.log('listening on port 8787 - Start here -> http://localhost:8787/hello?name=bob'))
+const wrapper = new ExpressWrapper()
+const router = diagnosticRouter()
+app.use(wrapper.wrap(router))
+app.listen(3000, () => console.log('listening on port 3000'))

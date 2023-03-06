@@ -42,7 +42,7 @@
   "scripts": {
     "test": "ts-mocha -p tsconfig.test.json --timeout 3000 --bail --recursive './test/**/*.test.ts' --reporter-option maxDiffSize=8128",
     "test:watch": "nodemon --watch test --watch src --exec 'npm test'",
-    "build": "microbundle --format modern,cjs --sourcemap false src/*.ts src/**/*.ts",
+    "build": "microbundle --format esm,modern,cjs --sourcemap false src/*.ts src/**/*.ts",
     "version-bump": "npm version patch && git push && git push --tags",
     "publish-public": "npm publish --access public",
     "lint": "eslint --ext .js,.ts src",
@@ -52,11 +52,11 @@
     "precommit": "yarn pretty-quick && yarn lint && yarn build",
     "aws:installSam:mac": "brew install aws-sam-cli"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@mountainpass/server-agnostic-functions-core": "^1.0.41",
     "aws-lambda": "1.0.7"
   },
-  "devDependencies": {
+  "dependencies": {
     "@types/aws-lambda": "8.10.109",
     "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.48.2",

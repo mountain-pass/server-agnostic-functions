@@ -33,13 +33,6 @@ const bodyToText = async (req: Request): Promise<string> => {
 }
 
 export class ExpressWrapper extends AgnosticRouterWrapperInterface<Request, Response, Router> {
-  expressRouter: Router
-
-  constructor() {
-    super()
-    this.expressRouter = Router()
-  }
-
   // map incoming requests
   async mapRequest(from: Request, to: HttpRequest): Promise<HttpRequest> {
     to.method = from.method.toLowerCase() as HttpMethod
@@ -89,7 +82,8 @@ export class ExpressWrapper extends AgnosticRouterWrapperInterface<Request, Resp
 
   wrap(agnosticRouter: AgnosticRouter<any, any>): Router {
     // serve all requests to the parent router's handle method
-    this.expressRouter.use(async (req: Request, res: Response) => {
+    const expressRouter = Router()
+    expressRouter.use(async (req: Request, res: Response) => {
       try {
         const request = await this.mapRequest(req, new HttpRequest())
 
@@ -108,6 +102,6 @@ export class ExpressWrapper extends AgnosticRouterWrapperInterface<Request, Resp
         res.end()
       }
     })
-    return this.expressRouter
+    return expressRouter
   }
 }

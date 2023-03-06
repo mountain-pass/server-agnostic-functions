@@ -25,6 +25,6 @@
     // "isolatedModules": true,
     // "noEmit": true,
   },
-  "include": ["src", "index.ts", "diagnostics.ts"],
+  "include": ["src", "index.ts", "src/diagnostics.ts"],
   "exclude": ["node_modules", "dist", "example"]
 }
