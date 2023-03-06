@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "module": "esnext",
+    "target": "es2015",
     "lib": ["esnext"],
     "moduleResolution": "node",
     // "sourceMap": true,
@@ -16,7 +17,6 @@
     // "noUnusedLocals": true,
     // "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2015",
     // "allowJs": true,
     // "skipLibCheck": true,
     "strict": true,
@@ -25,6 +25,6 @@
     // "isolatedModules": true,
     // "noEmit": true,
   },
-  "include": ["src", "index.ts"],
+  "include": ["src", "index.ts", "diagnostics.ts"],
   "exclude": ["node_modules", "dist", "example"]
 }
