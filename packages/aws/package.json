@@ -1,6 +1,6 @@
 {
   "name": "@mountainpass/server-agnostic-functions-aws",
-  "version": "1.0.43",
+  "version": "1.0.44",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
   "contributors": [
