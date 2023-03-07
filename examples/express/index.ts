@@ -4,7 +4,5 @@ import { ExpressWrapper } from '@mountainpass/server-agnostic-functions-express'
 import express from 'express'
 
 const app = express()
-const wrapper = new ExpressWrapper()
-const router = diagnosticRouter()
-app.use(wrapper.wrap(router))
+app.use(new ExpressWrapper().wrap(diagnosticRouter()))
 app.listen(3000, () => console.log('listening on port 3000'))

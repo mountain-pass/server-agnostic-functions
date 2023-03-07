@@ -48,11 +48,13 @@ router.get('/services/getUsersByQueryId', (req, res) => {
 Then to host it, wrap it in your service provider's wrapper. Below is an example using `ExpressWrapper`. e.g.
 
 ```javascript
-import ExpressWrapper from '@mountainpass/server-agnostic-functions-express'
+import { ExpressWrapper } from '@mountainpass/server-agnostic-functions-express'
+import express from 'express'
 
 const app = express()
-app.use(ExpressWrapper.wrap(express.Router(), router))
-app.listen(4000)
+app.use(new ExpressWrapper().wrap(diagnosticRouter()))
+app.listen(3000, () => console.log('listening on port 3000'))
+
 ```
 
 More provider examples are available below.
