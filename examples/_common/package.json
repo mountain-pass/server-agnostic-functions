@@ -1,7 +1,0 @@
-{
-  "name": "common",
-  "version": "1.0.43",
-  "dependencies": {
-    "@mountainpass/server-agnostic-functions-core": "^1.0.43"
-  }
-}

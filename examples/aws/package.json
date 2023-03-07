@@ -1,5 +1,5 @@
 {
-  "name": "aws",
+  "name": "@examples/aws",
   "version": "1.0.43",
   "description": "This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.",
   "main": "index.js",
@@ -11,12 +11,14 @@
     "prebuild": "npm run clean",
     "build": "sam build",
     "deploy": "sam deploy --guided",
-    "test": "ts-node integrationTest.ts",
     "prestart": "npm run build",
     "start": "npm run start:arm",
     "start:arm": "sam local start-api",
     "start:x86_64": "echo 'TODO Please update template.yaml to use the x86_64 architecture'",
-    "compile": "tsc"
+    "compile": "tsc",
+    "itest": "ts-node integrationTest.ts",
+    "test": "echo noop",
+    "lint": "echo noop"
   },
   "dependencies": {
     "@mountainpass/server-agnostic-functions-aws": "^1.0.43"
