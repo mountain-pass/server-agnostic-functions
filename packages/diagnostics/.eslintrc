@@ -10,7 +10,7 @@
     // disable process.env and all nodejs libraries
     "no-process-env": "error",
     "no-implicit-globals": "error",
-    "no-restricted-imports": ["error", { "paths": ["fs", "path", "crypto", "fs/promises", "http", "https"]}],
+    "no-restricted-imports": ["error", { "paths": ["fs", "path", "crypto", "fs/promises", "assert", "http", "https"]}],
     "space-before-function-paren": 0,
     "import/export": 0
   }
