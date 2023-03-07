@@ -1,6 +1,6 @@
 {
   "name": "@mountainpass/server-agnostic-functions-core",
-  "version": "1.0.48",
+  "version": "1.0.49",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
   "contributors": [
@@ -51,8 +51,6 @@
     "prettier": "prettier --write 'src/**/*.{js,ts,json}|*.{js,ts,json}'",
     "pretty-quick": "pretty-quick",
     "precommit": "yarn pretty-quick && yarn lint && yarn build"
-  },
-  "peerDependencies": {
   },
   "dependencies": {
     "@types/crypto-js": "4.1.1",
