@@ -8,7 +8,7 @@
     "test": "ts-node integrationTest.ts"
   },
   "dependencies": {
-    "@mountainpass/server-agnostic-functions-express": "^1.0.42",
+    "@mountainpass/server-agnostic-functions-express": "^1.0.44",
     "express": "4.18.2"
   },
   "devDependencies": {

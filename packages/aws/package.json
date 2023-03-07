@@ -53,7 +53,7 @@
     "aws:installSam:mac": "brew install aws-sam-cli"
   },
   "peerDependencies": {
-    "@mountainpass/server-agnostic-functions-core": "^1.0.42",
+    "@mountainpass/server-agnostic-functions-core": "^1.0.44",
     "aws-lambda": "1.0.7"
   },
   "dependencies": {

@@ -44,8 +44,8 @@
     "l:test": "lerna run --scope @mountainpass/* test",
     "l:build": "lerna run --scope @mountainpass/* build",
     "l:prebumxxxp": "npm install --package-lock-only --ignore-scripts --nohoist=*",
-    "l:bump": "npx lerna version patch --scope @mountainpass/* --yes --loglevel silly --ignore-scripts --no-private --force-publish --message '%s [skip ci]'",
-    "l:publish": "npx lerna publish from-package --scope @mountainpass/* --yes",
+    "l:bump": "npx lerna version patch --yes --loglevel silly --ignore-scripts --no-private --force-publish --message '%s [skip ci]'",
+    "l:publish": "npx lerna publish from-package --yes",
     "l:graph": "nx graph",
     "precommit": "npm run l:lint && npm run l:test && npm run l:build"
   },
