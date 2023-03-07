@@ -16,9 +16,7 @@
     "start:arm": "sam local start-api",
     "start:x86_64": "echo 'TODO Please update template.yaml to use the x86_64 architecture'",
     "compile": "tsc",
-    "itest": "ts-node integrationTest.ts",
-    "test": "echo noop",
-    "lint": "echo noop"
+    "test": "ts-node integrationTest.ts"
   },
   "dependencies": {
     "@mountainpass/server-agnostic-functions-aws": "^1.0.43"

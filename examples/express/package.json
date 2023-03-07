@@ -5,9 +5,7 @@
   "private": true,
   "scripts": {
     "start": "ts-node index.ts",
-    "itest": "ts-node integrationTest.ts",
-    "test": "echo noop",
-    "lint": "echo noop"
+    "test": "ts-node integrationTest.ts"
   },
   "dependencies": {
     "@mountainpass/server-agnostic-functions-express": "^1.0.42",
