@@ -171,7 +171,7 @@ Supported provider wrappers and their example usages:
 | Status | Package | Provides a wrapper for... | Usage Example |
 | --- |--- | --- | --- |
 | ✅ | @mountainpass/server-agnostic-functions-aws | AWS Lambda Functions  | [Link](/examples/aws/index.ts) |
-| ✅ | @mountainpass/server-agnostic-functions-cloudflare | Cloudflare Workers | [Link](/examples/cloudflare/index.ts) |
+| ✅ | @mountainpass/server-agnostic-functions-cloudflare | Cloudflare Workers | [Link](/examples/cloudflare/src/index.ts) |
 | ✅ | @mountainpass/server-agnostic-functions-express | Express NodeJs Web Application Framework | [Link](/examples/express/index.ts) |
 | ❓ | *Your Provider?* | | |
 
