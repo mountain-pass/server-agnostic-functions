@@ -1,6 +1,6 @@
 {
   "name": "@examples/aws",
-  "version": "1.0.44",
+  "version": "1.0.45",
   "description": "This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.",
   "main": "index.js",
   "license": "UNLICENSED",
@@ -19,7 +19,7 @@
     "test": "ts-node integrationTest.ts"
   },
   "dependencies": {
-    "@mountainpass/server-agnostic-functions-aws": "^1.0.44"
+    "@mountainpass/server-agnostic-functions-aws": "^1.0.45"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.92",
