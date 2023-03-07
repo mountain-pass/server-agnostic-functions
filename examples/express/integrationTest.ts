@@ -1,4 +1,4 @@
-import { verifyByCallingRunningHttpServer } from '@mountainpass/server-agnostic-functions-core'
+import { verifyByCallingRunningHttpServer } from '@mountainpass/server-agnostic-functions-diagnostics'
 import { spawn } from 'node:child_process'
 import { setTimeout } from 'timers/promises'
 

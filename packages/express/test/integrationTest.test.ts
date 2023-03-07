@@ -1,4 +1,4 @@
-import { verifyByCallingRunningHttpServer } from '@mountainpass/server-agnostic-functions-core'
+import { verifyByCallingRunningHttpServer } from '@mountainpass/server-agnostic-functions-diagnostics'
 import { after, before, describe, it } from 'mocha'
 import { spawn } from 'node:child_process'
 import path from 'path'

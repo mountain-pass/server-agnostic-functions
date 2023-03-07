@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { describe, it } from 'mocha'
-import { InMemoryCacher } from '../../src/caching/InMemoryCacher'
+import { hashString, InMemoryCacher } from '../../src/caching/InMemoryCacher'
 import { setTimeout } from 'timers/promises'
 
 describe('InMemoryCacher', () => {
@@ -17,6 +17,10 @@ describe('InMemoryCacher', () => {
     expect(await cache.fetch('a').promise).to.eql({ data: 'a2' })
     expect(await cache.fetch('b').promise).to.eql({ data: 'b3' })
     expect(await cache.fetch('b').promise).to.eql({ data: 'b3' })
+  })
+
+  it('hashing should work', () => {
+    expect(hashString('abc')).to.eql('a9993e364706816aba3e25717850c26c9cd0d89d')
   })
 
   it('caches should be hit on subsequent runs', async () => {

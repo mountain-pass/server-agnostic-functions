@@ -1,23 +1,8 @@
 import http from 'http'
-import { AgnosticRouter } from './common/AgnosticRouter'
 import assert from 'node:assert/strict'
 import { setTimeout } from 'timers/promises'
 
 const DEFAULT_HOST = 'http://127.0.0.1:3000'
-
-/** Used by the implementing router. */
-export const diagnosticRouter = () => {
-  const router = new AgnosticRouter()
-  router.get('/status', (req, res) => res.status(200).send('ok'))
-  router.get('/diagnostic/{pathParam1}', async (req, res) => {
-    const { method, path, headers, params, query, body } = req
-    const { inheader1 } = headers
-    res.headers.outheader1 = ['xxx', 'yyy']
-    res.status(201)
-    res.json({ method, path, headers: { inheader1 }, params, query, body })
-  })
-  return router
-}
 
 /** Promisified Http GET Request - no error handling */
 export const httpGet = async (url: string, options: any = {}) => {

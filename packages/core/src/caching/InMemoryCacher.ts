@@ -1,6 +1,6 @@
-import { createHash } from 'crypto'
+import sha1 from 'crypto-js/sha1'
 import { makeQuerablePromise, QueryablePromise } from './makeQueryablePromise'
-export const hashString = (str: string) => createHash('sha1').update(str).digest().toString('base64')
+export const hashString = (str: string) => sha1(str).toString() // .update(str).digest().toString('base64')
 
 export interface FetchResponse<Type> {
   /** The data object */

@@ -1,5 +1,5 @@
 {
-  "name": "@mountainpass/server-agnostic-functions-core",
+  "name": "@mountainpass/server-agnostic-functions-diagnostics",
   "version": "1.0.47",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
@@ -40,8 +40,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "test": "ts-mocha -p tsconfig.test.json --timeout 3000 --bail --recursive './test/**/*.test.ts' './test/*.test.ts' --reporter-option maxDiffSize=8128",
-    "test:watch": "nodemon --watch test --watch src --exec 'npm test --  --grep wip'",
+    "test": "echo noop",
     "prebuild": "rm -rf dist",
     "build": "microbundle --format cjs --sourcemap false index.ts src/*.ts src/**/*.ts",
     "version-bump": "npm version patch && git push && git push --tags",
@@ -53,10 +52,9 @@
     "precommit": "yarn pretty-quick && yarn lint && yarn build"
   },
   "peerDependencies": {
-    "crypto-js": "4.1.1"
+    "@mountainpass/server-agnostic-functions-core": "^1.0.47"
   },
   "dependencies": {
-    "@types/crypto-js": "4.1.1",
     "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",

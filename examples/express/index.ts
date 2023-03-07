@@ -1,5 +1,5 @@
 
-import { diagnosticRouter } from '@mountainpass/server-agnostic-functions-core'
+import { diagnosticRouter } from '@mountainpass/server-agnostic-functions-diagnostics'
 import { ExpressWrapper } from '@mountainpass/server-agnostic-functions-express'
 import express from 'express'
 
