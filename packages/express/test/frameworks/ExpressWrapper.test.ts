@@ -43,7 +43,7 @@ describe('ExpressWrapper', () => {
       expect(response.constructor.name).to.equal('Response')
       expect(response.status).to.equal(200)
       expect(response.body?.method).to.equal('get')
-      expect(response.body?.path).to.equal('/users/123?foo=bar1&foo=bar2')
+      expect(response.body?.path).to.equal('/users/123')
       expect(response.body?.query).to.deep.equal({ foo: ['bar1', 'bar2'] })
       expect(response.body?.params).to.deep.equal({ userId: '123' })
       expect(response.body?.headers?.cookie).to.deep.equal(['foobar'])
@@ -60,7 +60,7 @@ describe('ExpressWrapper', () => {
       // typeof response is express.Response
       expect(response.constructor.name).to.equal('Response')
       expect(response.body?.method).to.equal('post')
-      expect(response.body?.path).to.equal('/users/123?foo=bar1&foo=bar2')
+      expect(response.body?.path).to.equal('/users/123')
       expect(response.body?.query).to.deep.equal({ foo: ['bar1', 'bar2'] })
       expect(response.body?.params).to.deep.equal({ userId: '123' })
       expect(response.body?.headers?.cookie).to.deep.equal(['foobar'])
@@ -77,7 +77,7 @@ describe('ExpressWrapper', () => {
       // typeof response is express.Response
       expect(response.constructor.name).to.equal('Response')
       expect(response.body?.method).to.equal('put')
-      expect(response.body?.path).to.equal('/users/123?foo=bar1&foo=bar2')
+      expect(response.body?.path).to.equal('/users/123')
       expect(response.body?.query).to.deep.equal({ foo: ['bar1', 'bar2'] })
       expect(response.body?.params).to.deep.equal({ userId: '123' })
       expect(response.body?.headers?.cookie).to.deep.equal(['foobar'])
@@ -126,7 +126,7 @@ describe('ExpressWrapper', () => {
       expect(response.constructor.name).to.equal('Response')
       expect(response.status).to.equal(200)
       expect(response.body?.method).to.equal('get')
-      expect(response.body?.path).to.equal('/users/123?foo=bar1&foo=bar2')
+      expect(response.body?.path).to.equal('/users/123')
       expect(response.body?.query).to.deep.equal({ foo: ['bar1', 'bar2'] })
       expect(response.body?.params).to.deep.equal({ userId: '123' })
       expect(response.body?.headers?.cookie).to.deep.equal(['foobar'])
@@ -143,7 +143,7 @@ describe('ExpressWrapper', () => {
       // typeof response is express.Response
       expect(response.constructor.name).to.equal('Response')
       expect(response.body?.method).to.equal('post')
-      expect(response.body?.path).to.equal('/users/123?foo=bar1&foo=bar2')
+      expect(response.body?.path).to.equal('/users/123')
       expect(response.body?.query).to.deep.equal({ foo: ['bar1', 'bar2'] })
       expect(response.body?.params).to.deep.equal({ userId: '123' })
       expect(response.body?.headers?.cookie).to.deep.equal(['foobar'])
@@ -161,7 +161,7 @@ describe('ExpressWrapper', () => {
       // typeof response is express.Response
       expect(response.constructor.name).to.equal('Response')
       expect(response.body?.method).to.equal('put')
-      expect(response.body?.path).to.equal('/users/123?foo=bar1&foo=bar2')
+      expect(response.body?.path).to.equal('/users/123')
       expect(response.body?.query).to.deep.equal({ foo: ['bar1', 'bar2'] })
       expect(response.body?.params).to.deep.equal({ userId: '123' })
       expect(response.body?.headers?.cookie).to.deep.equal(['foobar'])

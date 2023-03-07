@@ -29,7 +29,8 @@
     "node": ">=16"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "prepare": "echo disabled",

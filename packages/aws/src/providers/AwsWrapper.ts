@@ -12,7 +12,7 @@ import { AwsHandler, AwsRequest, mapRequest, mapResponse } from '../utils/Reques
  * @param agnosticRouter
  * @returns
  */
-export class AwsWrapper implements AgnosticRouterWrapperInterface<AwsRequest, APIGatewayProxyResult, AwsHandler> {
+export class AwsWrapper extends AgnosticRouterWrapperInterface<AwsRequest, APIGatewayProxyResult, AwsHandler> {
   async mapRequest(from: AwsRequest, to: HttpRequest<any> = new HttpRequest()): Promise<HttpRequest<any>> {
     return mapRequest<AwsRequest>(from.event, from.context, to)
   }

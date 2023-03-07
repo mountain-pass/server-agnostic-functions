@@ -76,33 +76,21 @@ export const verifyByCallingRunningHttpServer = async (maxIterations = 10, baseU
   // VERIFY GET
 
   // verify response
-  assert.deepEqual(res.statusCode, 201, `Expected status code 201, got ${res.statusCode}`)
+  assert.deepEqual(res.statusCode, 201)
   console.log('\t✔ res status code')
-  assert.deepEqual(
-    res.headers.outheader1,
-    'xxx, yyy',
-    `Expected header outheader1 to be xxx, got ${res.headers.outheader1}`
-  )
+  assert.deepEqual(res.headers.outheader1, 'xxx, yyy')
   console.log('\t✔ res headers')
 
   // verify body (request)
   const body = JSON.parse(data || '{}')
-  assert.deepEqual(body.method, 'get', `Expected method get, got ${body.method}`)
+  assert.deepEqual(body.method, 'get')
   console.log('\t✔ req method')
-  assert.deepEqual(
-    body.path,
-    '/diagnostic/abc?query1=123&query1=456',
-    `Expected path /diagnostic/abc, got ${body.path}`
-  )
+  assert.deepEqual(body.path, '/diagnostic/abc')
   console.log('\t✔ req path')
-  assert.deepEqual(
-    body.headers.inheader1,
-    ['aaa, bbb'],
-    `Expected headers "['aaa', 'bbb']", got ${body.headers.inheader1}`
-  )
+  assert.deepEqual(body.headers.inheader1, ['aaa, bbb'])
   console.log('\t✔ req headers')
-  assert.deepEqual(body.query.query1, ['123', '456'], `Expected query1 "['123', '456']", got ${body.query.query1}`)
+  assert.deepEqual(body.query.query1, ['123', '456'])
   console.log('\t✔ req query')
-  assert.deepEqual(body.params.pathParam1, 'abc', `Expected pathParam1 "abc", got ${body.params.pathParam1}`)
+  assert.deepEqual(body.params.pathParam1, 'abc')
   console.log('\t✔ req path params')
 }

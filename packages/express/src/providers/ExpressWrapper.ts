@@ -36,7 +36,9 @@ export class ExpressWrapper extends AgnosticRouterWrapperInterface<Request, Resp
   // map incoming requests
   async mapRequest(from: Request, to: HttpRequest): Promise<HttpRequest> {
     to.method = from.method.toLowerCase() as HttpMethod
-    to.path = from.originalUrl
+    const tmp = new URL(from.originalUrl, 'http://localhost').pathname
+    console.log('GOT HERE', tmp)
+    to.path = tmp
     // map body
     to.body = from.body
     // map headers
