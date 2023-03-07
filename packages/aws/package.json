@@ -57,7 +57,7 @@
     "@mountainpass/server-agnostic-functions-core": "^1.0.53",
     "aws-lambda": "1.0.7"
   },
-  "devDpendencies": {
+  "devDependencies": {
     "@types/aws-lambda": "8.10.109",
     "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.48.2",

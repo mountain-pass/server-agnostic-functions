@@ -13,6 +13,7 @@
     "express": "4.18.2"
   },
   "devDependencies": {
+    "@mountainpass/server-agnostic-functions-diagnostics": "^1.0.53",
     "ts-node": "10.9.1"
   }
 }

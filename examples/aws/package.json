@@ -23,6 +23,7 @@
     "@mountainpass/server-agnostic-functions-aws": "^1.0.53"
   },
   "devDependencies": {
+    "@mountainpass/server-agnostic-functions-diagnostics": "^1.0.53",
     "@types/aws-lambda": "^8.10.92",
     "@types/node": "^18.11.4",
     "esbuild": "^0.14.14",

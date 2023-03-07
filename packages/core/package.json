@@ -53,6 +53,8 @@
     "precommit": "yarn pretty-quick && yarn lint && yarn build"
   },
   "dependencies": {
+  },
+  "devDependencies": {
     "@types/crypto-js": "4.1.1",
     "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.48.2",
@@ -76,9 +78,5 @@
     "ts-mocha": "10.0.0",
     "typescript": "4.9.4"
   },
-  "gitHead": "2f7c77b8553487765775857a7fdf5189eeae0bc9",
-  "devDependencies": {
-    "eslint": "8.35.0",
-    "eslint-plugin-node": "11.1.0"
-  }
+  "gitHead": "2f7c77b8553487765775857a7fdf5189eeae0bc9"
 }
