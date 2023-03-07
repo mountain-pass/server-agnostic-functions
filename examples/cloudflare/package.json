@@ -10,8 +10,8 @@
     "test": "ts-node integrationTest.ts"
   },
   "dependencies": {
-    "@mountainpass/server-agnostic-functions-diagnostics": "^1.0.48",
-    "@mountainpass/server-agnostic-functions-cloudflare": "^1.0.48"
+    "@mountainpass/server-agnostic-functions-diagnostics": "^1.0.49",
+    "@mountainpass/server-agnostic-functions-cloudflare": "^1.0.49"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20221111.1",

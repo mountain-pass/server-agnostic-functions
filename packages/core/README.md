@@ -9,7 +9,9 @@ Provides an interface for writing server-agnostic (serverless) functions.
 - [Http Methods](#http-methods)
 - [Paths and Path Parameters](#paths-and-path-parameters)
 - [Middleware](#middleware)
-- [Static File Serving](#static-file-serving)
+- [Utilities](#utilities)
+  - [InMemoryCache](#inmemorycache)
+  - [Static File Serving (coming soon - requires NodeJS)](#static-file-serving-coming-soon---requires-nodejs)
 - [Caveats](#caveats)
 - [Supported Providers](#supported-providers)
   - [Building your own Provider wrapper](#building-your-own-provider-wrapper)
@@ -23,6 +25,10 @@ The name "serverless functions" is a misnomer - there's always a server involved
 **Vendor Lock In**
 
 - providers impose their own method signatures and functional behaviours
+
+**Libraries**
+
+- providers don't always provide NodeJS execution environments
 
 **Routing**
 
@@ -130,7 +136,19 @@ router.use(async (req: HttpRequest, res: HttpResponse) => {
 })
 ```
 
-# Static File Serving
+# Utilities 
+
+## InMemoryCache
+
+An inmemory, temporal, lazy loading cache (`InMemoryCacher`) is provided, for caching HTTP responses.
+
+Alternatively you can use the `HttpResponseCacher` which provides a higher level abstraction, which handles the http response (and supports `ETag` and `Cache-Control` headers).
+
+```javascript
+// TODO provide example usage
+```
+
+## Static File Serving (coming soon - requires NodeJS)
 
 To serve the contents of a static directory, you can use the `serveStatic` helper function. Use the reserved keyword `path`, as the regex named group, to support serving child files/folders. e.g.
 
