@@ -1,9 +1,4 @@
 import { KeyValueArrayMap } from '../types/HttpTypes'
-import path from 'path'
-import { HttpRequest } from '../types/HttpRequest'
-import { HttpResponse } from '../types/HttpResponse'
-import fs from 'fs/promises'
-import { RouteHandler } from './AgnosticRouter'
 
 /**
  * Converts a string to a regex named group (capturing) matcher.
@@ -64,57 +59,63 @@ export const urlSearchParamsToKeyValueArrayMap = (entries: URLSearchParams) => {
   return result
 }
 
-async function exists(file: string) {
-  try {
-    await fs.stat(file)
-    return true
-  } catch {
-    return false
-  }
-}
+// import fs from 'fs/promises'
+// import path from 'path'
+// import { HttpRequest } from '../types/HttpRequest'
+// import { HttpResponse } from '../types/HttpResponse'
+// import { RouteHandler } from './AgnosticRouter'
 
-export const serveStatic = (
-  basepath = '.',
-  listdir = true,
-  defaultFileEncoding: BufferEncoding = 'utf-8',
-  cacheTimeSecs: number = 60
-): RouteHandler<any, any> => {
-  const abspath = path.resolve(basepath)
-  console.log(`serving static files from ${abspath}...`)
+// async function exists(file: string) {
+//   try {
+//     await fs.stat(file)
+//     return true
+//   } catch {
+//     return false
+//   }
+// }
 
-  return async (req: HttpRequest, res: HttpResponse) => {
-    // apply caching - these artifacts are static after all...
-    if (cacheTimeSecs > 0) {
-      res.headers['cache-control'] = [
-        `public, max-age=${cacheTimeSecs}, s-maxage=${cacheTimeSecs}, stale-while-revalidate=${cacheTimeSecs}, stale-if-error=${cacheTimeSecs}`
-      ]
-    } else if (cacheTimeSecs === 0) {
-      res.headers['cache-control'] = [
-        `public, max-age=604800, s-maxage=604800, stale-while-revalidate=604800, stale-if-error=604800, immutable`
-      ]
-    } else if (cacheTimeSecs === -1) {
-      res.headers['cache-control'] = ['no-cache, no-store, must-revalidate']
-    }
-    const reqpath = req.params.path
-    const file = reqpath ? path.resolve(path.join(abspath, reqpath)) : abspath
-    const relpath = path.relative(abspath, file)
-    if (relpath.startsWith('..')) {
-      res.status(401)
-      res.send('Forbidden')
-      return
-    }
-    if (await exists(file)) {
-      const isdir = (await fs.stat(file)).isDirectory()
-      if (listdir && isdir) {
-        res.json(await fs.readdir(file))
-        return
-      }
-      if (!isdir) {
-        res.send(await fs.readFile(file, { encoding: defaultFileEncoding }))
-        return
-      }
-    }
-    res.status(404)
-    res.send('Not found')
-  }
-}
+// export const serveStatic = (
+//   basepath = '.',
+//   listdir = true,
+//   defaultFileEncoding: BufferEncoding = 'utf-8',
+//   cacheTimeSecs: number = 60
+// ): RouteHandler<any, any> => {
+//   const abspath = path.resolve(basepath)
+//   console.log(`serving static files from ${abspath}...`)
+
+//   return async (req: HttpRequest, res: HttpResponse) => {
+//     // apply caching - these artifacts are static after all...
+//     if (cacheTimeSecs > 0) {
+//       res.headers['cache-control'] = [
+//         `public, max-age=${cacheTimeSecs}, s-maxage=${cacheTimeSecs}, stale-while-revalidate=${cacheTimeSecs}, stale-if-error=${cacheTimeSecs}`
+//       ]
+//     } else if (cacheTimeSecs === 0) {
+//       res.headers['cache-control'] = [
+//         `public, max-age=604800, s-maxage=604800, stale-while-revalidate=604800, stale-if-error=604800, immutable`
+//       ]
+//     } else if (cacheTimeSecs === -1) {
+//       res.headers['cache-control'] = ['no-cache, no-store, must-revalidate']
+//     }
+//     const reqpath = req.params.path
+//     const file = reqpath ? path.resolve(path.join(abspath, reqpath)) : abspath
+//     const relpath = path.relative(abspath, file)
+//     if (relpath.startsWith('..')) {
+//       res.status(401)
+//       res.send('Forbidden')
+//       return
+//     }
+//     if (await exists(file)) {
+//       const isdir = (await fs.stat(file)).isDirectory()
+//       if (listdir && isdir) {
+//         res.json(await fs.readdir(file))
+//         return
+//       }
+//       if (!isdir) {
+//         res.send(await fs.readFile(file, { encoding: defaultFileEncoding }))
+//         return
+//       }
+//     }
+//     res.status(404)
+//     res.send('Not found')
+//   }
+// }

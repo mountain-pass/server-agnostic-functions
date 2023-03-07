@@ -7,6 +7,7 @@ import { setTimeout } from 'timers/promises'
  */
 const init = async () => {
   let command: any
+  let exitCode = 0
   try {
     command = spawn('npm', ['run', 'start'])
     command.stdout.pipe(process.stdout)
@@ -14,12 +15,14 @@ const init = async () => {
 
     // verify the endpoint
     await verifyByCallingRunningHttpServer(100)
-
-  } finally {
-    await setTimeout(500)
-    command.kill()
-    process.exit(0)
+  } catch (error: any) {
+    console.error(`Caught error in integration test: ${error.message}`)
+    exitCode = 1
   }
+
+  await setTimeout(500)
+  command.kill()
+  process.exit(exitCode)
 }
 
 init()

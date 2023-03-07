@@ -20,7 +20,8 @@ describe('InMemoryCacher', () => {
   })
 
   it('hashing should work', () => {
-    expect(hashString('abc')).to.eql('a9993e364706816aba3e25717850c26c9cd0d89d')
+    expect(hashString('abc')).to.eql(5059922895146125)
+    expect(hashString('def')).to.eql(1917294213970058)
   })
 
   it('caches should be hit on subsequent runs', async () => {

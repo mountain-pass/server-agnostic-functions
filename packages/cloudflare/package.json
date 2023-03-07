@@ -52,11 +52,11 @@
     "pretty-quick": "pretty-quick",
     "precommit": "yarn pretty-quick && yarn lint && yarn build"
   },
-  "dependencies": {
+  "peerDependencies": {
     "@cloudflare/workers-types": "4.20221111.1",
     "@mountainpass/server-agnostic-functions-core": "^1.0.48"
   },
-  "devDependencies": {
+  "dependencies": {
     "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",

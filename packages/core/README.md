@@ -144,6 +144,8 @@ router.get('/static/?(?<path>.*)', serveStatic(path.join(__dirname)))
 
 Most serverless functions do not support maintaining websockets or streaming content. As such, we have not included support for these services.
 
+Some serverless environments are not NodeJS environments. As such, efforts have been made to exclude all NodeJS native libraries and global variables usage from the `core` module.
+
 # Supported Providers
 
 Supported provider wrappers and their example usages:

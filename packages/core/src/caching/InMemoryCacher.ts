@@ -1,6 +1,20 @@
-import sha1 from 'crypto-js/sha1'
 import { makeQuerablePromise, QueryablePromise } from './makeQueryablePromise'
-export const hashString = (str: string) => sha1(str).toString() // .update(str).digest().toString('base64')
+
+/** Use this polyfill, to avoid using Node native libs. */
+export const hashString = (str: string, seed = 0) => {
+  let h1 = 0xdeadbeef ^ seed
+  let h2 = 0x41c6ce57 ^ seed
+  for (let i = 0, ch; i < str.length; i++) {
+    ch = str.charCodeAt(i)
+    h1 = Math.imul(h1 ^ ch, 2654435761)
+    h2 = Math.imul(h2 ^ ch, 1597334677)
+  }
+
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909)
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909)
+
+  return 4294967296 * (2097151 & h2) + (h1 >>> 0)
+}
 
 export interface FetchResponse<Type> {
   /** The data object */
@@ -39,9 +53,8 @@ export interface Fetcher<Type> {
 export interface InMemoryCacherOptions {
   maxAgeMs: number
   maxItems?: number
+  debugLogging?: boolean
 }
-
-const debugLogging = process.env.LOG_LEVEL === 'debug'
 
 /**
  * Stores an item in memory for a given amount of time.
@@ -71,7 +84,8 @@ export class InMemoryCacher<Type> {
 
     // if data is old or missing, refetch...
     if (!cacheHit) {
-      if (debugLogging) console.log('cache miss', { key, expireAfter: prevData?.expiresTs, now: Date.now() })
+      if (this.options.debugLogging)
+        console.log('cache miss', { key, expireAfter: prevData?.expiresTs, now: Date.now() })
       const fetchResponse = this.fetcher(key, prevData?.promise)
       // retrieve previous data (may be undefined, may be an inflight promise)
       prevData = new InternalCacheEntry<Type>(makeQuerablePromise(fetchResponse), Date.now() + this.options.maxAgeMs)
@@ -88,7 +102,7 @@ export class InMemoryCacher<Type> {
       entries = entries.sort((a, b) => b[1].expiresTs - a[1].expiresTs).slice(0, this.options.maxItems)
     }
     this.cache = Object.fromEntries(entries)
-    if (debugLogging && entries.length !== count)
+    if (this.options.debugLogging && entries.length !== count)
       console.log('cache cleanup', { count: count - entries.length, remaining: entries.length })
     //
     return prevData
