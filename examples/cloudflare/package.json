@@ -1,6 +1,6 @@
 {
   "name": "@examples/cloudflare",
-  "version": "1.0.0",
+  "version": "1.0.51",
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
@@ -10,7 +10,7 @@
     "test": "ts-node integrationTest.ts"
   },
   "dependencies": {
-    "@mountainpass/server-agnostic-functions-cloudflare": "1.0.50"
+    "@mountainpass/server-agnostic-functions-cloudflare": "^1.0.51"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "4.20221111.1",

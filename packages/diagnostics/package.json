@@ -1,6 +1,6 @@
 {
   "name": "@mountainpass/server-agnostic-functions-diagnostics",
-  "version": "1.0.50",
+  "version": "1.0.51",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
   "contributors": [
@@ -51,12 +51,12 @@
     "pretty-quick": "pretty-quick",
     "precommit": "yarn pretty-quick && yarn lint && yarn build"
   },
-  "peerDependencies": {
-    "@mountainpass/server-agnostic-functions-core": "1.0.50",
+  "dependencies": {
+    "@mountainpass/server-agnostic-functions-core": "1.0.51",
     "axios": "1.3.4",
     "deep-equal": "2.2.0"
   },
-  "dependencies": {
+  "devDependencies": {
     "@types/assert": "1.5.6",
     "@types/axios": "0.14.0",
     "@types/supertest": "2.0.12",
@@ -85,7 +85,4 @@
     "typescript": "4.9.4"
   },
   "gitHead": "2f7c77b8553487765775857a7fdf5189eeae0bc9",
-  "devDependencies": {
-    "@types/deep-equal": "1.0.1"
-  }
 }

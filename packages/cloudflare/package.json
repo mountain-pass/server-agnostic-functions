@@ -1,6 +1,6 @@
 {
   "name": "@mountainpass/server-agnostic-functions-cloudflare",
-  "version": "1.0.50",
+  "version": "1.0.51",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
   "contributors": [
@@ -52,11 +52,11 @@
     "pretty-quick": "pretty-quick",
     "precommit": "yarn pretty-quick && yarn lint && yarn build"
   },
-  "peerDependencies": {
-    "@cloudflare/workers-types": "4.20221111.1",
-    "@mountainpass/server-agnostic-functions-core": "1.0.50"
-  },
   "dependencies": {
+    "@cloudflare/workers-types": "4.20221111.1",
+    "@mountainpass/server-agnostic-functions-core": "1.0.51"
+  },
+  "devDpendencies": {
     "@types/supertest": "2.0.12",
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",
