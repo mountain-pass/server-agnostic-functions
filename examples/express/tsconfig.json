@@ -1,9 +1,24 @@
 {
   "compilerOptions": {
+    "module": "ESNext",
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "target": "es2015",
-    "module": "commonjs"
+    "target": "ESNext",
+    "moduleResolution": "Node",
+    "outDir": "dist",
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "useUnknownInCatchVariables": false,
+    "inlineSourceMap": true
+  },
+  "exclude": [
+    "node_modules",
+  ],
+  "lib": ["esnext"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
   }
 }

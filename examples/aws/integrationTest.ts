@@ -16,8 +16,9 @@ const init = async () => {
     await verifyByCallingRunningHttpServer(100)
 
   } finally {
-    await setTimeout(1000)
+    await setTimeout(500)
     command.kill()
+    process.exit(0)
   }
 }
 
