@@ -20,11 +20,11 @@ export class HttpResponseCacher extends InMemoryCacher<string> {
   }
 
   /**
-   *
-   * @param key
+   * Fetches data from the underlying InMemoryCacher, and handles the HTTP response (including ETag and CacheControl handling).
    * @param req
    * @param res
-   * @param seconds
+   * @param key
+   * @param cacheControlHeaderOverride
    */
   async fetchAndServe(
     req: HttpRequest,

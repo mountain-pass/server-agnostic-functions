@@ -145,7 +145,33 @@ An inmemory, temporal, lazy loading cache (`InMemoryCacher`) is provided, for ca
 Alternatively you can use the `HttpResponseCacher` which provides a higher level abstraction, which handles the http response (and supports `ETag` and `Cache-Control` headers).
 
 ```javascript
-// TODO provide example usage
+import {
+    AgnosticRouter,
+    FetchResponseQueryablePromise,
+    hashString,
+    HttpRequest,
+    HttpResponse,
+    HttpResponseCacher
+} from '@mountainpass/server-agnostic-functions-core';
+import mongoose from 'mongoose';
+import Users from './db/Users.model';
+
+// responsible for fetching data from the database and caching it, based on a key
+const dataFetcher = new HttpResponseCacher(async (key: string, prevData: FetchResponseQueryablePromise<string> | undefined) => {
+    await mongoose.connect(process.env.MONGO_URL)
+    const tmp = await Users.find({ userId: key })
+    const data = JSON.stringify(tmp)
+    const hash = hashString(data)
+    // returns two objects the data and the hash
+    return { data, hash }
+}, { maxAgeMs: 30000, maxItems: 10 })
+
+export const router = new AgnosticRouter()
+
+// fetches data from the cache based on the userId key
+router.get('/users/{userId}', async (req: HttpRequest, res: HttpResponse) => {
+    return dataFetcher.fetchAndServe(req, res, req.params.userId)
+}
 ```
 
 ## Static File Serving (coming soon - requires NodeJS)
