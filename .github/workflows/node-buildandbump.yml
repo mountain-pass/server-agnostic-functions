@@ -43,7 +43,7 @@ jobs:
       - run: |
           npm run l:bump
 
-  publish-npm:
+  publish_npm:
     needs: bump_version
     runs-on: ubuntu-latest
     steps:
