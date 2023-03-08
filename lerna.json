@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/lerna/schemas/lerna-schema.json",
   "useWorkspaces": true,
-  "version": "1.0.59",
+  "version": "1.0.60",
   "npmClient": "npm",
   "npmClientArgs": [
     "--nohoist=*"
