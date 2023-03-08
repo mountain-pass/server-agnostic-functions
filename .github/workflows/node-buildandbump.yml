@@ -41,7 +41,14 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
       - run: |
+          npm i
+          npm run l:bootstrap
+          npm run l:build
+          
+          # bump the version
           npm run l:bump
+
+          # publish the local dist
           echo //registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN} > .npmrc
           npm run l:publish
         env:
