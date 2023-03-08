@@ -43,7 +43,7 @@
     "testx": "ts-mocha -p tsconfig.test.json --timeout 3000 --bail --recursive './test/**/*.test.ts' './test/*.test.ts' --reporter-option maxDiffSize=8128",
     "test": "echo disabled tests.",
     "test:watch": "nodemon --watch test --watch src --exec 'npm test'",
-    "build": "microbundle --format cjs --sourcemap false src/*.ts src/**/*.ts",
+    "build": "microbundle --format cjs --target web --sourcemap false src/*.ts src/**/*.ts",
     "version-bump": "npm version patch && git push && git push --tags",
     "publish-public": "npm publish --access public",
     "lint": "eslint --ext .js,.ts src",

@@ -42,7 +42,7 @@
   "scripts": {
     "test": "echo noop",
     "prebuild": "rm -rf dist",
-    "build": "microbundle --format cjs --sourcemap false index.ts src/*.ts src/**/*.ts",
+    "build": "microbundle --format cjs --target web --sourcemap false index.ts src/*.ts src/**/*.ts",
     "version-bump": "npm version patch && git push && git push --tags",
     "publish-public": "npm publish --access public",
     "lint": "eslint --ext .js,.ts src",
