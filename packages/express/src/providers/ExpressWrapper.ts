@@ -64,7 +64,7 @@ export class ExpressWrapper extends AgnosticRouterWrapperInterface<Request, Resp
       })
     }
     // map body
-    if (to.method === 'post' || to.method === 'put') {
+    if (['post', 'put', 'patch'].includes(to.method)) {
       to.body = await bodyToText(from)
     }
     // map underlying

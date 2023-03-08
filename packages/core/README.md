@@ -194,7 +194,7 @@ We don't currently support serving files from the filesystem for two reasons:
 However, I can definitely see the value in being able to provide this functionality.
 
 I'd love to hear if anyone has any ideas on how to solve this. e.g.
-- package a zip file's binary contents into a `.js` file, and then unzip and serve content from in memory.
+- package a zip file's binary contents into a `.js` file, and then unzip and serve content from in memory. (https://www.npmjs.com/package/jszip)
 - provide a separate NPM package, so serverless environments that do support `fs` operations can opt in.
 
 <!-- To serve the contents of a static directory, you can use the `serveStatic` helper function. Use the reserved keyword `path`, as the regex named group, to support serving child files/folders. e.g.
