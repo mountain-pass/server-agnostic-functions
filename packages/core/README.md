@@ -6,6 +6,7 @@ Provides an interface for writing server-agnostic (serverless) functions.
 - [Problem outline](#problem-outline)
   - [Solution:](#solution)
 - [Example Usage](#example-usage)
+- [Supported Providers](#supported-providers)
 - [Http Methods](#http-methods)
 - [Paths and Path Parameters](#paths-and-path-parameters)
 - [Middleware](#middleware)
@@ -13,7 +14,6 @@ Provides an interface for writing server-agnostic (serverless) functions.
   - [InMemoryCache](#inmemorycache)
   - [Static File Serving (coming soon - requires NodeJS)](#static-file-serving-coming-soon---requires-nodejs)
 - [Caveats](#caveats)
-- [Supported Providers](#supported-providers)
   - [Building your own Provider wrapper](#building-your-own-provider-wrapper)
 - [Notes](#notes)
 
@@ -78,6 +78,17 @@ app.listen(3000, () => console.log('listening on port 3000'))
 ```
 
 More provider examples are available below.
+
+# Supported Providers
+
+Supported provider wrappers and their example usages:
+
+| Status | Package | Provides a wrapper for... | Usage Example |
+| --- |--- | --- | --- |
+| ✅ | @mountainpass/server-agnostic-functions-aws | AWS Lambda Functions  | [Link](/examples/aws/index.ts) |
+| ✅ | @mountainpass/server-agnostic-functions-cloudflare | Cloudflare Workers | [Link](/examples/cloudflare/src/index.ts) |
+| ✅ | @mountainpass/server-agnostic-functions-express | Express NodeJs Web Application Framework | [Link](/examples/express/index.ts) |
+| ❓ | [*Your Provider?*](#building-your-own-provider-wrapper) | | |
 
 # Http Methods
 
@@ -189,17 +200,6 @@ router.get('/static/?(?<path>.*)', serveStatic(path.join(__dirname)))
 Most serverless functions do not support maintaining websockets or streaming content. As such, we have not included support for these services.
 
 Some serverless environments are not NodeJS environments. As such, efforts have been made to exclude all NodeJS native libraries and global variables usage from the `core` module.
-
-# Supported Providers
-
-Supported provider wrappers and their example usages:
-
-| Status | Package | Provides a wrapper for... | Usage Example |
-| --- |--- | --- | --- |
-| ✅ | @mountainpass/server-agnostic-functions-aws | AWS Lambda Functions  | [Link](/examples/aws/index.ts) |
-| ✅ | @mountainpass/server-agnostic-functions-cloudflare | Cloudflare Workers | [Link](/examples/cloudflare/src/index.ts) |
-| ✅ | @mountainpass/server-agnostic-functions-express | Express NodeJs Web Application Framework | [Link](/examples/express/index.ts) |
-| ❓ | *Your Provider?* | | |
 
 ## Building your own Provider wrapper
 
