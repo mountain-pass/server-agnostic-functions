@@ -1,6 +1,6 @@
 {
   "name": "@mountainpass/server-agnostic-functions-aws",
-  "version": "1.0.54",
+  "version": "1.0.55",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
   "contributors": [
@@ -54,7 +54,7 @@
     "aws:installSam:mac": "brew install aws-sam-cli"
   },
   "dependencies": {
-    "@mountainpass/server-agnostic-functions-core": "^1.0.54",
+    "@mountainpass/server-agnostic-functions-core": "^1.0.55",
     "aws-lambda": "1.0.7"
   },
   "devDependencies": {
