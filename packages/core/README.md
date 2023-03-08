@@ -12,7 +12,7 @@ Provides an interface for writing server-agnostic (serverless) functions.
 - [Middleware](#middleware)
 - [Utilities](#utilities)
   - [InMemoryCache](#inmemorycache)
-  - [Static File Serving (coming soon - requires NodeJS)](#static-file-serving-coming-soon---requires-nodejs)
+  - [Static File Serving](#static-file-serving)
 - [Caveats](#caveats)
   - [Building your own Provider wrapper](#building-your-own-provider-wrapper)
 - [Notes](#notes)
@@ -185,7 +185,7 @@ router.get('/users/{userId}', async (req: HttpRequest, res: HttpResponse) => {
 }
 ```
 
-## Static File Serving (coming soon - requires NodeJS)
+## Static File Serving
 
 We don't currently support serving files from the filesystem for two reasons:
 1. some providers don't give access to a file system
