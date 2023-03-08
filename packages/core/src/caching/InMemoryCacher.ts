@@ -1,6 +1,11 @@
 import { makeQuerablePromise, QueryablePromise } from './makeQueryablePromise'
 
-/** Use this polyfill, to avoid using Node native libs. */
+/**
+ * Use this polyfill, to avoid using Node native libs.
+ * Reference:
+ * - https://stackoverflow.com/a/52171480/782034
+ * - https://github.com/bryc/code/blob/master/jshash/experimental/cyrb53.js
+ */
 export const hashString = (str: string, seed = 0) => {
   let h1 = 0xdeadbeef ^ seed
   let h2 = 0x41c6ce57 ^ seed
