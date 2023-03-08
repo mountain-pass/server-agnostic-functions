@@ -1,6 +1,6 @@
 {
   "name": "@mountainpass/server-agnostic-functions-diagnostics",
-  "version": "1.0.57",
+  "version": "1.0.58",
   "description": "Provides an interface for writing server-agnostic (serverless) functions.",
   "author": "Mountain Pass <info@mountain-pass.com.au>",
   "contributors": [
@@ -52,7 +52,7 @@
     "precommit": "yarn pretty-quick && yarn lint && yarn build"
   },
   "dependencies": {
-    "@mountainpass/server-agnostic-functions-core": "^1.0.57",
+    "@mountainpass/server-agnostic-functions-core": "^1.0.58",
     "axios": "1.3.4",
     "deep-equal": "2.2.0"
   },
