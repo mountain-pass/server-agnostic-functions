@@ -140,9 +140,9 @@ router.use(async (req: HttpRequest, res: HttpResponse) => {
 
 ## InMemoryCache
 
-An inmemory, temporal, lazy loading cache (`InMemoryCacher`) is provided, for caching HTTP responses.
+An inmemory, temporal, lazy loading cache (`InMemoryCacher`) is provided, for caching data.
 
-Alternatively you can use the `HttpResponseCacher` which provides a higher level abstraction, which handles the http response (and supports `ETag` and `Cache-Control` headers).
+Alternatively you can use the `HttpResponseCacher`, a higher level abstraction which handles the http response for you (and supports `ETag` and `Cache-Control` headers).
 
 ```javascript
 import {
