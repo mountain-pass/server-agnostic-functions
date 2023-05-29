@@ -90,6 +90,20 @@ export class AgnosticRouter<UnderlyingRequest = any, UnderlyingResponse = any> {
     return res
   }
 
+  join = (router: AgnosticRouter): AgnosticRouter => {
+    this.middleware = [...this.middleware, ...router.middleware]
+    this.routes.get = [...this.routes.get, ...router.routes.get]
+    this.routes.post = [...this.routes.post, ...router.routes.post]
+    this.routes.put = [...this.routes.put, ...router.routes.put]
+    this.routes.delete = [...this.routes.delete, ...router.routes.delete]
+    this.routes.patch = [...this.routes.patch, ...router.routes.patch]
+    this.routes.head = [...this.routes.head, ...router.routes.head]
+    this.routes.options = [...this.routes.options, ...router.routes.options]
+    this.routes.connect = [...this.routes.connect, ...router.routes.connect]
+    this.routes.trace = [...this.routes.trace, ...router.routes.trace]
+    return this
+  }
+
   /**
    * Handles the routing of the request.
    * @param req

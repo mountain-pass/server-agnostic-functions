@@ -4,7 +4,8 @@ import { describe, it, beforeEach } from 'mocha'
 import { HttpRequest } from '../../src/types/HttpRequest'
 import { HttpResponse } from '../../src/types/HttpResponse'
 import { buildRouter } from './fixtures/MySimpleApi'
-import path from 'path'
+
+import { AgnosticRouter } from '../../src/common/AgnosticRouter'
 
 describe('AgnosticRouter', () => {
   let router = buildRouter()
@@ -41,14 +42,8 @@ describe('AgnosticRouter', () => {
     })
 
     it('should reject unhandled requests', async () => {
-      // build request
-      const req = HttpRequest.fromDefaults({ path: '/users/123/nothandled' })
       const res = new HttpResponse()
-
-      // invoke routes
-      await router.handle(req, res)
-
-      // verify response
+      await router.handle(HttpRequest.fromDefaults({ path: '/users/123/nothandled' }), res)
       expect(res.statusCode).to.equal(404)
       expect(res.body).to.equal('Not found')
     })
@@ -71,6 +66,25 @@ describe('AgnosticRouter', () => {
       expect(res.statusCode).to.eql(200)
       expect(res.headers.middleware).to.eql(['1', '2'])
       expect(res.body).to.eql('{"message":"hi","userId":"123"}')
+    })
+
+    it('router should support joining multiple routers', async () => {
+      // build request
+      const router2 = new AgnosticRouter()
+      router2.get('/hello/world', (req, res) => res.json({ message: 'hello' }))
+      router.join(router2)
+
+      // verify existing routes work correctly
+      const res = new HttpResponse()
+      await router.handle(HttpRequest.fromDefaults({ path: '/users/123' }), res)
+      expect(res.statusCode).to.equal(200)
+      expect(res.body).to.equal('{"message":"hi","userId":"123"}')
+
+      // verify new routes also work
+      const res2 = new HttpResponse()
+      await router.handle(HttpRequest.fromDefaults({ path: '/hello/world' }), res2)
+      expect(res2.statusCode).to.equal(200)
+      expect(res2.body).to.equal('{"message":"hello"}')
     })
 
     it('if middleware ends the response, then no further processing occurs', async () => {
@@ -110,7 +124,7 @@ describe('AgnosticRouter', () => {
   describe.skip('serveStatic', () => {
     it('should be able to serve static dirs wip', async () => {
       // setup
-      router.get('/static/(?<path>.*)', serveStatic(path.join(__dirname)))
+      // router.get('/static/(?<path>.*)', serveStatic(path.join(__dirname)))
       // /static
       const res1 = await router.handleRequestOnly(HttpRequest.fromDefaults({ path: '/static' }))
       expect(res1.statusCode).to.eql(404)

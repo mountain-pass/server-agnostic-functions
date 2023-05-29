@@ -8,6 +8,7 @@ Provides an interface for writing server-agnostic (serverless) functions.
 - [Example Usage](#example-usage)
 - [Supported Providers](#supported-providers)
 - [Http Methods](#http-methods)
+- [Multiple Routers](#multiple-routers)
 - [Paths and Path Parameters](#paths-and-path-parameters)
 - [Middleware](#middleware)
 - [Utilities](#utilities)
@@ -104,6 +105,16 @@ router.head('/mypath', ...)
 router.options('/mypath', ...)
 router.connect('/mypath', ...)
 router.trace('/mypath', ...)
+```
+
+# Multiple Routers
+
+Have multiple routers? The core library allows you to join two routers together
+
+Adds router2's `middleware` and `routes`, into the original `router`. This modifies the original `router`, which is also returned from the function call.
+
+```javascript
+router.join(router2)
 ```
 
 # Paths and Path Parameters
