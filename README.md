@@ -11,7 +11,7 @@ Provides an interface for writing server-agnostic (serverless) functions.
 
 # I just want to start now!
 
-Clone this [template repo]([express](https://github.com/mountain-pass/server-agnostic-functions-express-template)), to get started with the server-agnostic-functions and express.
+Clone this [template repo](https://github.com/mountain-pass/server-agnostic-functions-express-template), to get started with the server-agnostic-functions and express.
 
 ```
 git clone https://github.com/mountain-pass/server-agnostic-functions-express-template.git
