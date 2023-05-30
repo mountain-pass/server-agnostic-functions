@@ -109,12 +109,14 @@ router.trace('/mypath', ...)
 
 # Multiple Routers
 
-Have multiple routers? The core library allows you to join two routers together
+Have multiple routers? The core library allows you to join two routers together.
 
-Adds router2's `middleware` and `routes`, into the original `router`. This modifies the original `router`, which is also returned from the function call.
+Use the following code to add **router2's** `middleware` and `routes`, into the original **router**. These calls can be chained.
 
 ```javascript
-router.join(router2)
+router
+    .join(router2)
+    .join(router3)
 ```
 
 # Paths and Path Parameters
